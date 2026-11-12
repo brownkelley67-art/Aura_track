@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import mapboxgl from 'mapbox-gl';
 // mapbox-gl CSS loaded via index.html <link> to avoid PostCSS conflict
-import { MAPBOX_TOKEN, initMapbox, interpolateAlongRoute, formatDistance, formatDuration, getRouteWithFallback, computeTimeBasedProgress, computeTimeRemaining, ROUTE_STYLE } from '../utils/mapbox';
+import { MAPBOX_TOKEN, initMapbox, interpolateAlongRoute, formatDistance, formatDuration, getRouteWithFallback, computeTimeBasedProgress, computeTimeRemaining, ROUTE_STYLE, toLngLat, validRouteCoordinates } from '../utils/mapbox';
 
 const statusConfig: Record<string, { color: string; bg: string; icon: React.ReactNode; label: string }> = {
   'pending':          { color: 'text-gray-600',   bg: 'bg-gray-100',   icon: <Clock size={16} />,       label: 'Order Confirmed' },
@@ -90,11 +90,13 @@ const TrackingDashboard: React.FC = () => {
         if (routeCoordsRef.current && routeCoordsRef.current.length > 2) {
           const pos = interpolateAlongRoute(routeCoordsRef.current, progress);
           currentMarkerRef.current.setLngLat(pos);
-        } else if (s.origin_lat && s.origin_lng && s.dest_lat && s.dest_lng) {
+        } else if (toLngLat(s.origin_lng, s.origin_lat) && toLngLat(s.dest_lng, s.dest_lat)) {
+          const origin = toLngLat(s.origin_lng, s.origin_lat)!;
+          const destination = toLngLat(s.dest_lng, s.dest_lat)!;
           const p = progress / 100;
           currentMarkerRef.current.setLngLat([
-            s.origin_lng + (s.dest_lng - s.origin_lng) * p,
-            s.origin_lat + (s.dest_lat - s.origin_lat) * p,
+            origin[0] + (destination[0] - origin[0]) * p,
+            origin[1] + (destination[1] - origin[1]) * p,
           ]);
         }
       }
@@ -110,15 +112,17 @@ const TrackingDashboard: React.FC = () => {
     initMapbox();
 
     const s = data.shipment;
-    const hasCoords = s.origin_lat && s.origin_lng && s.dest_lat && s.dest_lng;
-    if (!hasCoords) return;
+    const origin = toLngLat(s.origin_lng, s.origin_lat);
+    const destination = toLngLat(s.dest_lng, s.dest_lat);
+    if (!origin || !destination) return;
+    const storedRoute = validRouteCoordinates(s.route_data?.coordinates);
 
     if (map.current) { map.current.remove(); map.current = null; }
 
     const m = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/light-v11',
-      center: [(s.origin_lng + s.dest_lng) / 2, (s.origin_lat + s.dest_lat) / 2],
+      center: [(origin[0] + destination[0]) / 2, (origin[1] + destination[1]) / 2],
       zoom: 4,
     });
 
@@ -128,12 +132,14 @@ const TrackingDashboard: React.FC = () => {
       // Route line — draw from fetched or stored route, or fallback to straight line
       const geometry = routeGeometry || {
         type: 'LineString',
-        coordinates: [[s.origin_lng, s.origin_lat], [s.dest_lng, s.dest_lat]],
+        coordinates: [origin, destination],
       };
+      const coordinates = validRouteCoordinates(geometry.coordinates) || [origin, destination];
+      const safeGeometry = { type: 'LineString' as const, coordinates };
 
       m.addSource('route', {
         type: 'geojson',
-        data: { type: 'Feature', properties: {}, geometry },
+        data: { type: 'Feature', properties: {}, geometry: safeGeometry },
       });
       m.addLayer({
         id: 'route-line-glow',
@@ -154,7 +160,7 @@ const TrackingDashboard: React.FC = () => {
       const originEl = document.createElement('div');
       originEl.innerHTML = `<div style="width:14px;height:14px;border-radius:50%;background:#10b981;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.2);"></div>`;
       new mapboxgl.Marker({ element: originEl })
-        .setLngLat([s.origin_lng, s.origin_lat])
+        .setLngLat(origin)
         .setPopup(new mapboxgl.Popup({ offset: 15 }).setHTML(`<div style="padding:6px;font-size:12px;"><strong>Origin</strong><br/>${s.origin}</div>`))
         .addTo(m);
 
@@ -162,12 +168,12 @@ const TrackingDashboard: React.FC = () => {
       const destEl = document.createElement('div');
       destEl.innerHTML = `<div style="width:14px;height:14px;border-radius:50%;background:#ef4444;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.2);"></div>`;
       new mapboxgl.Marker({ element: destEl })
-        .setLngLat([s.dest_lng, s.dest_lat])
+        .setLngLat(destination)
         .setPopup(new mapboxgl.Popup({ offset: 15 }).setHTML(`<div style="padding:6px;font-size:12px;"><strong>Destination</strong><br/>${s.destination}</div>`))
         .addTo(m);
 
       // Current position marker — use time-based progress
-      const coords = geometry?.coordinates;
+      const coords = coordinates;
       routeCoordsRef.current = coords?.length > 2 ? coords : null;
       const initialProgress = computeTimeBasedProgress(s);
       let currentPos: [number, number];
@@ -176,8 +182,8 @@ const TrackingDashboard: React.FC = () => {
       } else {
         const p = initialProgress / 100;
         currentPos = [
-          s.origin_lng + (s.dest_lng - s.origin_lng) * p,
-          s.origin_lat + (s.dest_lat - s.origin_lat) * p,
+          origin[0] + (destination[0] - origin[0]) * p,
+          origin[1] + (destination[1] - origin[1]) * p,
         ];
       }
 
@@ -197,23 +203,24 @@ const TrackingDashboard: React.FC = () => {
 
       // Fit bounds
       const bounds = new mapboxgl.LngLatBounds();
-      bounds.extend([s.origin_lng, s.origin_lat]);
-      bounds.extend([s.dest_lng, s.dest_lat]);
+      bounds.extend(origin);
+      bounds.extend(destination);
       m.fitBounds(bounds, { padding: 60, duration: 1000 });
     };
 
     m.on('load', async () => {
       // Use stored route_data if available, otherwise fetch it live
-      if (s.route_data?.coordinates?.length > 0) {
-        addRouteAndMarkers(s.route_data);
+      if (storedRoute) {
+        addRouteAndMarkers({ type: 'LineString', coordinates: storedRoute });
       } else {
         // Try to fetch route dynamically (road route with great circle arc fallback)
         try {
           const result = await getRouteWithFallback(
-            [s.origin_lng, s.origin_lat],
-            [s.dest_lng, s.dest_lat]
+            origin,
+            destination
           );
-          addRouteAndMarkers(result?.geometry || null);
+          const routeCoordinates = validRouteCoordinates(result?.geometry?.coordinates);
+          addRouteAndMarkers(routeCoordinates ? { type: 'LineString', coordinates: routeCoordinates } : null);
         } catch {
           addRouteAndMarkers(null);
         }

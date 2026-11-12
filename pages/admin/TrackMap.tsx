@@ -9,7 +9,7 @@ import { Shipment } from './types';
 import * as api from '../../services/api';
 import mapboxgl from 'mapbox-gl';
 // mapbox-gl CSS loaded via index.html <link> to avoid PostCSS conflict
-import { MAPBOX_TOKEN, initMapbox, interpolateAlongRoute, formatDistance, formatDuration, computeTimeBasedProgress, computeTimeRemaining, getRouteWithFallback, ROUTE_STYLE, calculatePositionAtTime } from '../../utils/mapbox';
+import { MAPBOX_TOKEN, initMapbox, interpolateAlongRoute, formatDistance, formatDuration, computeTimeBasedProgress, computeTimeRemaining, getRouteWithFallback, ROUTE_STYLE, calculatePositionAtTime, toLngLat, validRouteCoordinates } from '../../utils/mapbox';
 
 interface TrackMapProps {
   shipments: Shipment[];
@@ -57,9 +57,17 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
         const res = await api.shipments.list({ limit: 100 });
         const dataMap: Record<string, any> = {};
         for (const s of res.shipments) {
+          const parsedRoute = s.route_data ? (typeof s.route_data === 'string' ? JSON.parse(s.route_data) : s.route_data) : null;
+          const routeCoordinates = validRouteCoordinates(parsedRoute?.coordinates);
+          const origin = toLngLat(s.origin_lng, s.origin_lat);
+          const destination = toLngLat(s.dest_lng, s.dest_lat);
           dataMap[s.tracking_id] = {
             ...s,
-            route_data: s.route_data ? (typeof s.route_data === 'string' ? JSON.parse(s.route_data) : s.route_data) : null,
+            origin_lng: origin?.[0] ?? null,
+            origin_lat: origin?.[1] ?? null,
+            dest_lng: destination?.[0] ?? null,
+            dest_lat: destination?.[1] ?? null,
+            route_data: routeCoordinates ? { type: 'LineString', coordinates: routeCoordinates } : null,
             transport_modes: s.transport_modes ? (typeof s.transport_modes === 'string' ? JSON.parse(s.transport_modes) : s.transport_modes) : null,
           };
         }
@@ -68,13 +76,16 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
         // Fetch real road routes for shipments that don't have route_data
         for (const tid of Object.keys(dataMap)) {
           const d = dataMap[tid];
-          if (!d.route_data && d.origin_lat && d.origin_lng && d.dest_lat && d.dest_lng && !routesFetchedRef.current.has(tid)) {
+          const origin = toLngLat(d.origin_lng, d.origin_lat);
+          const destination = toLngLat(d.dest_lng, d.dest_lat);
+          if (!d.route_data && origin && destination && !routesFetchedRef.current.has(tid)) {
             routesFetchedRef.current.add(tid);
-            getRouteWithFallback([d.origin_lng, d.origin_lat], [d.dest_lng, d.dest_lat]).then(result => {
-              if (result?.geometry) {
+            getRouteWithFallback(origin, destination).then(result => {
+              const routeCoordinates = validRouteCoordinates(result?.geometry?.coordinates);
+              if (routeCoordinates) {
                 setFullShipmentData(prev => ({
                   ...prev,
-                  [tid]: { ...prev[tid], route_data: result.geometry, route_distance: result.distance, route_duration: result.duration },
+                  [tid]: { ...prev[tid], route_data: { type: 'LineString', coordinates: routeCoordinates }, route_distance: result.distance, route_duration: result.duration },
                 }));
               }
             }).catch(() => {});
@@ -238,21 +249,24 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
 
     activeShipments.forEach(s => {
       const fullData = fullShipmentData[s.trackingId];
-      const hasCoords = fullData && fullData.origin_lat && fullData.origin_lng && fullData.dest_lat && fullData.dest_lng;
-      const hasRoute = fullData?.route_data?.coordinates?.length > 0;
+      const origin = fullData && toLngLat(fullData.origin_lng, fullData.origin_lat);
+      const destination = fullData && toLngLat(fullData.dest_lng, fullData.dest_lat);
+      const hasCoords = !!origin && !!destination;
+      const routeCoordinates = validRouteCoordinates(fullData?.route_data?.coordinates);
+      const hasRoute = !!routeCoordinates;
       const color = statusColors[s.status] || '#3b82f6';
       const progress = liveProgress[s.trackingId] ?? s.progress;
 
       // Calculate initial marker position
       let markerLng: number, markerLat: number;
       if (hasRoute) {
-        const pos = interpolateAlongRoute(fullData.route_data.coordinates, progress);
+        const pos = interpolateAlongRoute(routeCoordinates!, progress);
         markerLng = pos[0];
         markerLat = pos[1];
       } else if (hasCoords) {
         const p = progress / 100;
-        markerLng = fullData.origin_lng + (fullData.dest_lng - fullData.origin_lng) * p;
-        markerLat = fullData.origin_lat + (fullData.dest_lat - fullData.origin_lat) * p;
+        markerLng = origin![0] + (destination![0] - origin![0]) * p;
+        markerLat = origin![1] + (destination![1] - origin![1]) * p;
       } else {
         return;
       }
@@ -278,12 +292,12 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
       if (hasCoords) {
         const originEl = document.createElement('div');
         originEl.innerHTML = `<div style="width:8px;height:8px;border-radius:50%;background:#10b981;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></div>`;
-        const om = new mapboxgl.Marker({ element: originEl }).setLngLat([fullData.origin_lng, fullData.origin_lat]).addTo(m);
+        const om = new mapboxgl.Marker({ element: originEl }).setLngLat(origin!).addTo(m);
         auxMarkersRef.current.push(om);
 
         const destEl = document.createElement('div');
         destEl.innerHTML = `<div style="width:8px;height:8px;border-radius:50%;background:#ef4444;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></div>`;
-        const dm = new mapboxgl.Marker({ element: destEl }).setLngLat([fullData.dest_lng, fullData.dest_lat]).addTo(m);
+        const dm = new mapboxgl.Marker({ element: destEl }).setLngLat(destination!).addTo(m);
         auxMarkersRef.current.push(dm);
       }
 
@@ -324,19 +338,22 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
       if (!marker) return;
       const fullData = fullShipmentData[s.trackingId];
       if (!fullData) return;
-      const hasRoute = fullData?.route_data?.coordinates?.length > 0;
-      const hasCoords = fullData.origin_lat && fullData.origin_lng && fullData.dest_lat && fullData.dest_lng;
+      const routeCoordinates = validRouteCoordinates(fullData?.route_data?.coordinates);
+      const hasRoute = !!routeCoordinates;
+      const origin = toLngLat(fullData.origin_lng, fullData.origin_lat);
+      const destination = toLngLat(fullData.dest_lng, fullData.dest_lat);
+      const hasCoords = !!origin && !!destination;
       const progress = liveProgress[s.trackingId] ?? s.progress;
 
       let lng: number, lat: number;
       if (hasRoute) {
-        const pos = interpolateAlongRoute(fullData.route_data.coordinates, progress);
+        const pos = interpolateAlongRoute(routeCoordinates!, progress);
         lng = pos[0];
         lat = pos[1];
       } else if (hasCoords) {
         const p = progress / 100;
-        lng = fullData.origin_lng + (fullData.dest_lng - fullData.origin_lng) * p;
-        lat = fullData.origin_lat + (fullData.dest_lat - fullData.origin_lat) * p;
+        lng = origin![0] + (destination![0] - origin![0]) * p;
+        lat = origin![1] + (destination![1] - origin![1]) * p;
       } else {
         return;
       }

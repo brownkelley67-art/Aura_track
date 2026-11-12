@@ -6,6 +6,34 @@ import { lineString } from '@turf/helpers';
 declare const __MAPBOX_TOKEN__: string;
 export const MAPBOX_TOKEN = (typeof __MAPBOX_TOKEN__ !== 'undefined' ? __MAPBOX_TOKEN__ : '');
 
+export type LngLat = [number, number];
+
+export function toLngLat(longitude: unknown, latitude: unknown): LngLat | null {
+  if (longitude == null || latitude == null || longitude === '' || latitude === '') return null;
+
+  const lng = Number(longitude);
+  const lat = Number(latitude);
+  if (!Number.isFinite(lng) || !Number.isFinite(lat) || lng < -180 || lng > 180 || lat < -90 || lat > 90) {
+    return null;
+  }
+
+  return [lng, lat];
+}
+
+export function validRouteCoordinates(value: unknown): LngLat[] | null {
+  if (!Array.isArray(value) || value.length < 2) return null;
+
+  const coordinates: LngLat[] = [];
+  for (const point of value) {
+    if (!Array.isArray(point) || point.length < 2) return null;
+    const coordinate = toLngLat(point[0], point[1]);
+    if (!coordinate) return null;
+    coordinates.push(coordinate);
+  }
+
+  return coordinates;
+}
+
 export function initMapbox() {
   if (MAPBOX_TOKEN) {
     (mapboxgl as any).accessToken = MAPBOX_TOKEN;
