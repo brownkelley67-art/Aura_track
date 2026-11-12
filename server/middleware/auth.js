@@ -2,10 +2,9 @@ const jwt = require('jsonwebtoken');
 const { supabase } = require('../db');
 require('dotenv').config();
 
-const SECRET = process.env.JWT_SECRET;
+const SECRET = process.env.JWT_SECRET || process.env.SUPABASE_JWT_SECRET;
 if (!SECRET || SECRET.length < 32) {
-  console.error('FATAL: JWT_SECRET must be set in .env and be at least 32 characters.');
-  process.exit(1);
+  console.error('JWT_SECRET or SUPABASE_JWT_SECRET must be set and be at least 32 characters.');
 }
 
 async function authMiddleware(req, res, next) {

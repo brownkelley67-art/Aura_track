@@ -17,7 +17,7 @@ const COMPANY_NAME = 'NexusRoute Global Logistics';
 const COMPANY_EMAIL = process.env.COMPANY_EMAIL || 'nexusroutegloballogistics@gmail.com';
 const COMPANY_PHONE = '202-846-4800';
 const COMPANY_ADDRESS = 'Atlanta, GA';
-const FRONTEND_URL = process.env.FRONTEND_URL || 'https://nexusroutegloballogistics.com';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://auratrack-psi.vercel.app';
 
 /**
  * Send an email using the configured SMTP transport
