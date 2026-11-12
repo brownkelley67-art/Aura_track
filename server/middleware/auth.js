@@ -27,7 +27,13 @@ async function authMiddleware(req, res, next) {
       req.user = {
         id: user.id,
         email: user.email,
-        role: 'admin' // Supabase users are considered admins for the dashboard
+        username: user.user_metadata?.username || user.email?.split('@')[0],
+        full_name: user.user_metadata?.full_name || 'Admin',
+        phone: user.user_metadata?.phone || null,
+        avatar: user.user_metadata?.avatar || null,
+        user_metadata: user.user_metadata || {},
+        role: user.app_metadata?.role || 'admin',
+        created_at: user.created_at,
       };
     }
     

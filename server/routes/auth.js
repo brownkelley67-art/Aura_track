@@ -1,7 +1,6 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
-const { pool, supabase } = require('../db');
-const { authMiddleware, generateToken } = require('../middleware/auth');
+const { supabase } = require('../db');
+const { authMiddleware } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -19,6 +18,19 @@ function validatePassword(pw) {
 function sanitize(str, maxLen = 255) {
   if (typeof str !== 'string') return str;
   return str.trim().slice(0, maxLen);
+}
+
+function toProfile(user) {
+  return {
+    id: user.id,
+    username: user.user_metadata?.username || user.email?.split('@')[0] || '',
+    email: user.email,
+    full_name: user.user_metadata?.full_name || 'Admin',
+    phone: user.user_metadata?.phone || null,
+    avatar: user.user_metadata?.avatar || null,
+    role: user.app_metadata?.role || 'admin',
+    created_at: user.created_at,
+  };
 }
 
 // POST /api/auth/register — admin-only (must be logged in as admin to create new users)
@@ -41,22 +53,21 @@ router.post('/register', authMiddleware, async (req, res) => {
     const pwError = validatePassword(password);
     if (pwError) return res.status(400).json({ error: pwError });
 
-    const { rows: existing } = await pool.query('SELECT id FROM users WHERE username = $1 OR email = $2', [username, email]);
-    if (existing.length > 0) {
-      return res.status(409).json({ error: 'Username or email already exists.' });
+    const { data, error } = await supabase.auth.admin.createUser({
+      email,
+      password,
+      email_confirm: true,
+      user_metadata: { username, full_name, phone: phone || null },
+      app_metadata: { role: 'admin' },
+    });
+    if (error) {
+      if (error.message.toLowerCase().includes('already')) {
+        return res.status(409).json({ error: 'Username or email already exists.' });
+      }
+      throw error;
     }
 
-    const hash = await bcrypt.hash(password, 12);
-
-    const { rows: inserted } = await pool.query(
-      'INSERT INTO users (username, email, password, full_name, phone) VALUES ($1, $2, $3, $4, $5) RETURNING id, username, email, full_name, role, created_at',
-      [username, email, hash, full_name, phone || null]
-    );
-
-    const user = inserted[0];
-    const token = generateToken(user);
-
-    res.status(201).json({ user, token });
+    res.status(201).json({ user: toProfile(data.user) });
   } catch (err) {
     console.error('Register error:', err);
     res.status(500).json({ error: 'Internal server error.' });
@@ -83,16 +94,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials.' });
     }
 
-    // Supabase Auth succeeded
-    res.json({
-      user: {
-        id: data.user.id,
-        email: data.user.email,
-        full_name: data.user.user_metadata?.full_name || 'Admin',
-        role: 'admin'
-      },
-      token: data.session.access_token
-    });
+    res.json({ user: toProfile(data.user), token: data.session.access_token });
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).json({ error: 'Internal server error.' });
@@ -102,22 +104,7 @@ router.post('/login', async (req, res) => {
 // GET /api/auth/me
 router.get('/me', authMiddleware, async (req, res) => {
   try {
-    // If it's a Supabase user, req.user won't have a username, just email and role
-    if (!req.user.username && req.user.email) {
-      return res.json({
-        user: {
-          id: req.user.id,
-          email: req.user.email,
-          full_name: 'Admin User',
-          role: 'admin',
-          created_at: new Date().toISOString()
-        }
-      });
-    }
-
-    const { rows } = await pool.query('SELECT id, username, email, full_name, role, phone, avatar, created_at FROM users WHERE id = $1', [req.user.id]);
-    if (!rows[0]) return res.status(404).json({ error: 'User not found.' });
-    res.json({ user: rows[0] });
+    res.json({ user: req.user });
   } catch (err) {
     console.error('Get profile error:', err);
     res.status(500).json({ error: 'Internal server error.' });
@@ -128,13 +115,17 @@ router.get('/me', authMiddleware, async (req, res) => {
 router.put('/me', authMiddleware, async (req, res) => {
   try {
     const { full_name, email, phone, avatar } = req.body;
-    await pool.query(
-      'UPDATE users SET full_name = COALESCE($1, full_name), email = COALESCE($2, email), phone = COALESCE($3, phone), avatar = COALESCE($4, avatar) WHERE id = $5',
-      [full_name || null, email || null, phone || null, avatar || null, req.user.id]
-    );
+    const userMetadata = { ...(req.user.user_metadata || {}) };
+    if (full_name !== undefined) userMetadata.full_name = full_name;
+    if (phone !== undefined) userMetadata.phone = phone;
+    if (avatar !== undefined) userMetadata.avatar = avatar;
 
-    const { rows } = await pool.query('SELECT id, username, email, full_name, role, phone, avatar, created_at FROM users WHERE id = $1', [req.user.id]);
-    res.json({ user: rows[0] });
+    const updates = { user_metadata: userMetadata };
+    if (email !== undefined) updates.email = email;
+
+    const { data, error } = await supabase.auth.admin.updateUserById(req.user.id, updates);
+    if (error) throw error;
+    res.json({ user: toProfile(data.user) });
   } catch (err) {
     console.error('Update profile error:', err);
     res.status(500).json({ error: 'Internal server error.' });
@@ -152,15 +143,16 @@ router.put('/password', authMiddleware, async (req, res) => {
     const pwError = validatePassword(new_password);
     if (pwError) return res.status(400).json({ error: pwError });
 
-    const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [req.user.id]);
-    const user = rows[0];
-    const valid = await bcrypt.compare(current_password, user.password);
-    if (!valid) {
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email: req.user.email,
+      password: current_password,
+    });
+    if (signInError) {
       return res.status(401).json({ error: 'Current password is incorrect.' });
     }
 
-    const hash = await bcrypt.hash(new_password, 12);
-    await pool.query('UPDATE users SET password = $1 WHERE id = $2', [hash, req.user.id]);
+    const { error } = await supabase.auth.admin.updateUserById(req.user.id, { password: new_password });
+    if (error) throw error;
 
     res.json({ message: 'Password updated successfully.' });
   } catch (err) {
