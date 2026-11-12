@@ -32,8 +32,7 @@ app.use(cors({
     // Always allow localhost
     if (origin.startsWith('http://localhost:')) return cb(null, true);
     
-    // Always allow the production domains
-    if (origin.includes('nexusroutegloballogistics.com')) return cb(null, true);
+    // Allow Vercel production and preview domains
     if (origin.includes('vercel.app')) return cb(null, true);
     
     // Allow explicitly defined FRONTEND_URL if present
@@ -100,7 +99,7 @@ app.use('/api/emails', emailRoutes);
 
 // Root route — minimal, no API map exposed
 app.get('/', (req, res) => {
-  res.json({ name: 'NexusRoute API', status: 'running' });
+  res.json({ name: 'Summit Global Express API', status: 'running' });
 });
 
 // Health check
@@ -125,7 +124,7 @@ app.use((err, req, res, next) => {
 // ─── START SERVER ────────────────────────────────────────────────────
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
-    console.log(`\n🚀 NexusRoute API Server running on http://localhost:${PORT}`);
+    console.log(`\n🚀 Summit Global Express API Server running on http://localhost:${PORT}`);
     console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
     console.log(`\nAPI Endpoints:`);
     console.log(`  POST   /api/auth/register`);

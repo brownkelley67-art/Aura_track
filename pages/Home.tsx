@@ -20,19 +20,19 @@ const HeroSection: React.FC = () => (
         alt="Global logistics"
         className="w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0a192f]/95 via-[#0a192f]/80 to-[#0a192f]/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#242b26]/95 via-[#242b26]/80 to-[#242b26]/40" />
     </div>
 
     <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-0 w-full">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <Reveal direction="left" delay={0.2} width="100%">
           <div className="space-y-6 sm:space-y-8">
-            <div className="inline-block px-4 py-1.5 bg-blue-500/20 text-blue-300 text-xs font-semibold tracking-wider uppercase rounded-full border border-blue-500/30">
+            <div className="inline-block px-4 py-1.5 bg-green-500/20 text-green-300 text-xs font-semibold tracking-wider uppercase rounded-full border border-green-500/30">
               Trusted by 500+ Global Brands
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight tracking-tight">
               Delivering the World with{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-300 to-green-400">
                 Precision & Care.
               </span>
             </h1>
@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => (
               that connect businesses across 150+ countries with speed and reliability.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <a href="#track" onClick={(e) => { e.preventDefault(); document.getElementById('track')?.scrollIntoView({ behavior: 'smooth' }); }} className="px-8 py-4 bg-blue-600 text-white font-medium hover:bg-blue-500 transition-all shadow-lg hover:shadow-blue-600/25 rounded-sm text-center">
+              <a href="#track" onClick={(e) => { e.preventDefault(); document.getElementById('track')?.scrollIntoView({ behavior: 'smooth' }); }} className="px-8 py-4 bg-lime-400 text-[#242b26] font-semibold hover:bg-lime-300 transition-all shadow-lg hover:shadow-lime-400/25 rounded-sm text-center">
                 Track Your Shipment
               </a>
               <a href="#services" onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }} className="px-8 py-4 border-2 border-white/30 text-white font-medium hover:bg-white/10 transition-all rounded-sm text-center">
@@ -80,7 +80,7 @@ const HeroSection: React.FC = () => (
                   <CheckCircle className="w-6 h-6 text-green-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-[#0a192f]">Live Tracking Active</p>
+                  <p className="text-sm font-bold text-[#242b26]">Live Tracking Active</p>
                   <p className="text-xs text-gray-500">2,341 shipments in transit</p>
                 </div>
               </div>
@@ -104,7 +104,7 @@ const AboutSection: React.FC = () => (
               alt="Logistics warehouse operations"
               className="w-full h-[350px] sm:h-[450px] object-cover rounded-sm shadow-xl"
             />
-            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-[#0a192f] text-white p-4 sm:p-6 rounded-sm shadow-xl">
+            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-[#242b26] text-white p-4 sm:p-6 rounded-sm shadow-xl">
               <p className="text-3xl sm:text-4xl font-bold">15+</p>
               <p className="text-xs sm:text-sm text-gray-300">Years of Excellence</p>
             </div>
@@ -113,14 +113,14 @@ const AboutSection: React.FC = () => (
 
         <Reveal direction="right" delay={0.2}>
           <div className="space-y-6">
-            <div className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold tracking-wider uppercase rounded-full">
-              About NexusRoute Global Logistics
+            <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold tracking-wider uppercase rounded-full">
+              About Summit Global Express
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0a192f] leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#242b26] leading-tight">
               Your Trusted Partner in Global Logistics Solutions
             </h2>
             <p className="text-gray-600 leading-relaxed">
-              Founded in 2010, NexusRoute Global Logistics has grown from a regional courier service into a global logistics 
+              Founded in 2010, Summit Global Express has grown from a regional courier service into a global logistics 
               powerhouse. We combine cutting-edge technology with decades of industry expertise to deliver 
               unmatched supply chain solutions.
             </p>
@@ -131,38 +131,38 @@ const AboutSection: React.FC = () => (
 
             <div className="grid grid-cols-2 gap-6 pt-4">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-blue-50 rounded-sm flex items-center justify-center flex-shrink-0">
-                  <Target className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 bg-green-50 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <Target className="w-5 h-5 text-green-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[#0a192f] text-sm">Our Mission</h4>
+                  <h4 className="font-semibold text-[#242b26] text-sm">Our Mission</h4>
                   <p className="text-xs text-gray-500 mt-1">Redefine logistics with innovation and reliability.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-blue-50 rounded-sm flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 bg-green-50 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <TrendingUp className="w-5 h-5 text-green-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[#0a192f] text-sm">Our Vision</h4>
+                  <h4 className="font-semibold text-[#242b26] text-sm">Our Vision</h4>
                   <p className="text-xs text-gray-500 mt-1">Be the world's most trusted logistics partner.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-blue-50 rounded-sm flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 bg-green-50 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-5 h-5 text-green-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[#0a192f] text-sm">Safety First</h4>
+                  <h4 className="font-semibold text-[#242b26] text-sm">Safety First</h4>
                   <p className="text-xs text-gray-500 mt-1">ISO 9001 & 14001 certified operations.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-blue-50 rounded-sm flex items-center justify-center flex-shrink-0">
-                  <Zap className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 bg-green-50 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <Zap className="w-5 h-5 text-green-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[#0a192f] text-sm">Fast & Agile</h4>
+                  <h4 className="font-semibold text-[#242b26] text-sm">Fast & Agile</h4>
                   <p className="text-xs text-gray-500 mt-1">Real-time tracking & adaptive routing.</p>
                 </div>
               </div>
@@ -239,10 +239,10 @@ const ServicesSection: React.FC = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <Reveal direction="bottom">
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <div className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
+          <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
             What We Offer
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#0a192f] mb-4">Comprehensive Logistics Services</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#242b26] mb-4">Comprehensive Logistics Services</h2>
           <p className="text-gray-600">
             End-to-end supply chain solutions tailored to your business. Every mode, every route, every time.
           </p>
@@ -260,23 +260,23 @@ const ServicesSection: React.FC = () => (
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f]/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 w-12 h-12 bg-white rounded-sm flex items-center justify-center text-[#0a192f] shadow-lg">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#242b26]/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 w-12 h-12 bg-white rounded-sm flex items-center justify-center text-[#242b26] shadow-lg">
                     {service.icon}
                   </div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl font-bold text-[#0a192f] mb-2 group-hover:text-blue-600 transition-colors">{service.title}</h3>
+                  <h3 className="text-xl font-bold text-[#242b26] mb-2 group-hover:text-green-600 transition-colors">{service.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">{service.description}</p>
                   <ul className="space-y-2 mb-4">
                     {service.features.map((f) => (
                       <li key={f} className="flex items-center gap-2 text-xs text-gray-600">
-                        <CheckCircle className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
+                        <CheckCircle className="w-3.5 h-3.5 text-green-600 flex-shrink-0" />
                         {f}
                       </li>
                     ))}
                   </ul>
-                  <div className="flex items-center gap-1.5 text-sm font-medium text-blue-600 group-hover:gap-3 transition-all">
+                  <div className="flex items-center gap-1.5 text-sm font-medium text-green-600 group-hover:gap-3 transition-all">
                     Learn More <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
@@ -347,8 +347,8 @@ const TrackMiniMap: React.FC = () => {
       const mEl = document.createElement('div');
       mEl.innerHTML = `
         <div style="position:relative;">
-          <div style="width:24px;height:24px;border-radius:50%;background:#3b82f6;opacity:0.25;position:absolute;top:-5px;left:-5px;animation:ping 2s ease-in-out infinite;"></div>
-          <div style="width:14px;height:14px;border-radius:50%;background:#3b82f6;border:3px solid white;box-shadow:0 2px 10px rgba(59,130,246,0.5);position:relative;z-index:1;"></div>
+          <div style="width:24px;height:24px;border-radius:50%;background:#16834a;opacity:0.25;position:absolute;top:-5px;left:-5px;animation:ping 2s ease-in-out infinite;"></div>
+          <div style="width:14px;height:14px;border-radius:50%;background:#16834a;border:3px solid white;box-shadow:0 2px 10px rgba(59,130,246,0.5);position:relative;z-index:1;"></div>
         </div>
       `;
       const marker = new mapboxgl.Marker({ element: mEl }).setLngLat(origin).addTo(m);
@@ -388,21 +388,21 @@ const TrackMiniMap: React.FC = () => {
         <>
           <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]" />
           <svg className="absolute inset-0 w-full h-full pointer-events-none">
-            <path d="M 40 280 Q 200 80 400 180 T 700 120" fill="none" stroke="#0a192f" strokeWidth="3" strokeDasharray="6 6" />
+            <path d="M 40 280 Q 200 80 400 180 T 700 120" fill="none" stroke="#242b26" strokeWidth="3" strokeDasharray="6 6" />
           </svg>
           <div className="absolute top-[45%] left-[65%] transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-            <div className="w-4 h-4 bg-blue-500 rounded-full animate-ping absolute" />
-            <div className="w-3 h-3 bg-white rounded-full relative z-10 shadow-lg border-2 border-blue-500" />
+            <div className="w-4 h-4 bg-green-500 rounded-full animate-ping absolute" />
+            <div className="w-3 h-3 bg-white rounded-full relative z-10 shadow-lg border-2 border-green-500" />
           </div>
         </>
       )}
       {/* Overlay info */}
       <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end z-10 pointer-events-none">
-        <div className="bg-[#0a192f]/85 backdrop-blur-md px-3 py-2 rounded-sm border border-gray-700/50">
+        <div className="bg-[#242b26]/85 backdrop-blur-md px-3 py-2 rounded-sm border border-gray-700/50">
           <p className="text-[10px] text-gray-400 uppercase tracking-wider">Live Demo</p>
-          <p className="font-mono text-xs text-blue-400">New York → Chicago</p>
+          <p className="font-mono text-xs text-green-400">New York → Chicago</p>
         </div>
-        <div className="bg-[#0a192f]/85 backdrop-blur-md p-2 rounded-sm border border-gray-700/50">
+        <div className="bg-[#242b26]/85 backdrop-blur-md p-2 rounded-sm border border-gray-700/50">
           <MapPin className="w-4 h-4 text-gray-400" />
         </div>
       </div>
@@ -421,12 +421,12 @@ const TrackSection: React.FC = () => {
   };
 
   return (
-    <section id="track" className="py-16 sm:py-24 bg-[#0a192f] text-white overflow-hidden">
+    <section id="track" className="py-16 sm:py-24 bg-[#242b26] text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <Reveal direction="left" delay={0.1}>
             <div className="space-y-6">
-              <div className="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-semibold tracking-wider uppercase rounded-full border border-blue-500/30">
+              <div className="inline-block px-3 py-1 bg-green-500/20 text-green-300 text-xs font-semibold tracking-wider uppercase rounded-full border border-green-500/30">
                 Real-Time Visibility
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold leading-tight">Track & Trace Your Shipment Anywhere, Anytime.</h2>
@@ -445,9 +445,9 @@ const TrackSection: React.FC = () => {
                     value={trackId}
                     onChange={(e) => setTrackId(e.target.value)}
                     placeholder="e.g., AT-8842-X9" 
-                    className="w-full h-14 sm:h-16 pl-5 sm:pl-6 pr-14 sm:pr-16 bg-[#112240] border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-base sm:text-lg font-mono rounded-sm"
+                    className="w-full h-14 sm:h-16 pl-5 sm:pl-6 pr-14 sm:pr-16 bg-[#303a34] border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-lime-400 transition-colors text-base sm:text-lg font-mono rounded-sm"
                   />
-                  <button type="submit" className="absolute right-2 top-2 bottom-2 aspect-square bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center rounded-sm transition-colors">
+                  <button type="submit" className="absolute right-2 top-2 bottom-2 aspect-square bg-lime-400 hover:bg-lime-300 text-[#242b26] flex items-center justify-center rounded-sm transition-colors">
                     <Search className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
                 </form>
@@ -465,8 +465,8 @@ const TrackSection: React.FC = () => {
                 ].map((step, i) => (
                   <div key={i} className="flex items-start gap-4">
                     <div className="flex flex-col items-center">
-                      <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${step.done ? 'bg-blue-500 border-blue-500' : 'border-gray-600'}`} />
-                      {i < 4 && <div className={`w-0.5 h-8 ${step.done ? 'bg-blue-500/50' : 'bg-gray-700'}`} />}
+                      <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${step.done ? 'bg-green-500 border-green-500' : 'border-gray-600'}`} />
+                      {i < 4 && <div className={`w-0.5 h-8 ${step.done ? 'bg-green-500/50' : 'bg-gray-700'}`} />}
                     </div>
                     <div className="-mt-0.5">
                       <p className={`text-sm font-medium ${step.done ? 'text-white' : 'text-gray-500'}`}>{step.label}</p>
@@ -479,7 +479,7 @@ const TrackSection: React.FC = () => {
           </Reveal>
 
           <Reveal direction="right" delay={0.3}>
-            <div className="relative w-full aspect-square sm:aspect-video lg:aspect-square bg-[#112240] border border-gray-700 rounded-sm shadow-2xl overflow-hidden">
+            <div className="relative w-full aspect-square sm:aspect-video lg:aspect-square bg-[#303a34] border border-gray-600 rounded-sm shadow-2xl overflow-hidden">
               <TrackMiniMap />
             </div>
           </Reveal>
@@ -522,10 +522,10 @@ const ProjectsSection: React.FC = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <Reveal direction="bottom">
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <div className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
+          <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
             Our Portfolio
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#0a192f] mb-4">Featured Projects</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#242b26] mb-4">Featured Projects</h2>
           <p className="text-gray-600">
             Real-world case studies showcasing our ability to handle complex logistics challenges at global scale.
           </p>
@@ -541,9 +541,9 @@ const ProjectsSection: React.FC = () => (
                 alt={project.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f] via-[#0a192f]/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#242b26] via-[#242b26]/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
-                <span className="inline-block px-2 py-1 bg-blue-600/80 text-white text-xs font-medium rounded-sm mb-2">
+                <span className="inline-block px-2 py-1 bg-green-600/80 text-white text-xs font-medium rounded-sm mb-2">
                   {project.category}
                 </span>
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-1">{project.title}</h3>
@@ -563,14 +563,14 @@ const previewReviews = [
     name: 'Sarah Mitchell',
     role: 'VP Supply Chain, TechFlow Inc.',
     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&fit=crop&w=100&q=80',
-    text: 'NexusRoute transformed our supply chain. Real-time tracking and proactive communication have reduced our delivery issues by over 60%.',
+    text: 'Summit Global Express transformed our supply chain. Real-time tracking and proactive communication have reduced our delivery issues by over 60%.',
     rating: 5,
   },
   {
     name: 'James Okonkwo',
     role: 'CEO, AfriTrade Exports',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=jpg&fit=crop&w=100&q=80',
-    text: 'From customs clearance to last-mile delivery, NexusRoute handles everything seamlessly. Our logistics backbone for 5 years.',
+    text: 'From customs clearance to last-mile delivery, Summit Global Express handles everything seamlessly. Our logistics backbone for 5 years.',
     rating: 5,
   },
   {
@@ -587,10 +587,10 @@ const TestimonialsSection: React.FC = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <Reveal direction="bottom">
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <div className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
+          <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
             Client Feedback
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#0a192f] mb-4">What Our Clients Say</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#242b26] mb-4">What Our Clients Say</h2>
           <p className="text-gray-600">
             Trusted by 500+ global businesses. Over 30 verified customer reviews.
           </p>
@@ -610,7 +610,7 @@ const TestimonialsSection: React.FC = () => (
               <div className="flex items-center gap-3 mt-6 pt-6 border-t border-gray-100">
                 <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-full object-cover" />
                 <div>
-                  <p className="font-semibold text-[#0a192f] text-sm">{t.name}</p>
+                  <p className="font-semibold text-[#242b26] text-sm">{t.name}</p>
                   <p className="text-xs text-gray-500">{t.role}</p>
                 </div>
               </div>
@@ -626,12 +626,12 @@ const TestimonialsSection: React.FC = () => (
             <div className="flex gap-0.5">
               {[1,2,3,4,5].map(s => <Star key={s} className="w-4 h-4 text-yellow-400 fill-yellow-400" />)}
             </div>
-            <span className="text-sm text-gray-600">4.9 / 5 · <strong className="text-[#0a192f]">30+ reviews</strong></span>
+            <span className="text-sm text-gray-600">4.9 / 5 · <strong className="text-[#242b26]">30+ reviews</strong></span>
           </div>
           <div>
             <Link
               to="/reviews"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#0a192f] text-white font-semibold rounded-sm hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-700/25 group"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#242b26] text-white font-semibold rounded-sm hover:bg-green-700 transition-all shadow-lg hover:shadow-green-700/25 group"
             >
               See All Reviews
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -679,10 +679,10 @@ const FAQSection: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <Reveal direction="bottom">
           <div className="text-center mb-12 sm:mb-16">
-            <div className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
+            <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
               Common Questions
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0a192f] mb-4">Frequently Asked Questions</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#242b26] mb-4">Frequently Asked Questions</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Everything you need to know about our logistics services. Can't find an answer? Contact us directly.
             </p>
@@ -697,9 +697,9 @@ const FAQSection: React.FC = () => {
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
                   className="w-full flex items-center justify-between px-5 sm:px-6 py-4 sm:py-5 text-left hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-medium text-[#0a192f] text-sm sm:text-base pr-4">{faq.q}</span>
+                  <span className="font-medium text-[#242b26] text-sm sm:text-base pr-4">{faq.q}</span>
                   {openIndex === i
-                    ? <ChevronUp className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    ? <ChevronUp className="w-5 h-5 text-green-600 flex-shrink-0" />
                     : <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
                   }
                 </button>
@@ -719,12 +719,12 @@ const FAQSection: React.FC = () => {
 
 /* ──────────────────────────── CONTACT ──────────────────────────── */
 const ContactSection: React.FC = () => (
-  <section id="contact" className="py-16 sm:py-24 bg-[#0a192f] text-white overflow-hidden">
+  <section id="contact" className="py-16 sm:py-24 bg-[#242b26] text-white overflow-hidden">
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
         <Reveal direction="left" delay={0.1}>
           <div className="space-y-6">
-            <div className="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-semibold tracking-wider uppercase rounded-full border border-blue-500/30">
+            <div className="inline-block px-3 py-1 bg-green-500/20 text-green-300 text-xs font-semibold tracking-wider uppercase rounded-full border border-green-500/30">
               Get in Touch
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold leading-tight">Let's Move Your Business Forward.</h2>
@@ -735,8 +735,8 @@ const ContactSection: React.FC = () => (
 
             <div className="space-y-5 pt-4">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-blue-600/20 rounded-sm flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-blue-400" />
+                <div className="w-12 h-12 bg-green-600/20 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-green-400" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-white text-sm">Headquarters</h4>
@@ -744,26 +744,26 @@ const ContactSection: React.FC = () => (
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-blue-600/20 rounded-sm flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-5 h-5 text-blue-400" />
+                <div className="w-12 h-12 bg-green-600/20 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-5 h-5 text-green-400" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-white text-sm">Phone</h4>
-                  <p className="text-sm text-gray-400 mt-1">202-846-4800</p>
+                  <p className="text-sm text-gray-400 mt-1">332-225-7564</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-blue-600/20 rounded-sm flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-5 h-5 text-blue-400" />
+                <div className="w-12 h-12 bg-green-600/20 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 text-green-400" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-white text-sm">Email</h4>
-                  <p className="text-sm text-gray-400 mt-1">nexusroutegloballogistics@gmail.com</p>
+                  <p className="text-sm text-gray-400 mt-1">summitglobalexpress@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-blue-600/20 rounded-sm flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-5 h-5 text-blue-400" />
+                <div className="w-12 h-12 bg-green-600/20 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-5 h-5 text-green-400" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-white text-sm">Working Hours</h4>
@@ -784,31 +784,31 @@ const ContactSection: React.FC = () => (
 
         <Reveal direction="right" delay={0.2}>
           <div className="bg-white rounded-sm p-6 sm:p-8 shadow-2xl">
-            <h3 className="text-xl font-bold text-[#0a192f] mb-6">Request a Free Quote</h3>
+            <h3 className="text-xl font-bold text-[#242b26] mb-6">Request a Free Quote</h3>
             <form className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Full Name</label>
-                  <input type="text" placeholder="John Smith" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none" />
+                  <input type="text" placeholder="John Smith" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Company</label>
-                  <input type="text" placeholder="Your Company" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none" />
+                  <input type="text" placeholder="Your Company" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Email</label>
-                  <input type="email" placeholder="john@company.com" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none" />
+                  <input type="email" placeholder="john@company.com" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Phone</label>
-                  <input type="tel" placeholder="+1 (555) 000-0000" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none" />
+                  <input type="tel" placeholder="+1 (555) 000-0000" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
                 </div>
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Service Needed</label>
-                <select className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none bg-white">
+                <select className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none bg-white">
                   <option value="">Select a service...</option>
                   <option>Air Freight</option>
                   <option>Ocean Freight</option>
@@ -821,9 +821,9 @@ const ContactSection: React.FC = () => (
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Message</label>
-                <textarea rows={4} placeholder="Tell us about your shipment needs..." className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none resize-none" />
+                <textarea rows={4} placeholder="Tell us about your shipment needs..." className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm text-gray-800 focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none resize-none" />
               </div>
-              <button type="button" className="w-full px-6 py-3.5 bg-[#0a192f] text-white font-medium hover:bg-[#112d57] transition-all rounded-sm flex items-center justify-center gap-2">
+              <button type="button" className="w-full px-6 py-3.5 bg-[#242b26] text-white font-medium hover:bg-[#39433d] transition-all rounded-sm flex items-center justify-center gap-2">
                 <Send className="w-4 h-4" />
                 Send Request
               </button>

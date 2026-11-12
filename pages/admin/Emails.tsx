@@ -111,7 +111,7 @@ const Emails: React.FC = () => {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-xl sm:text-2xl font-bold text-[#0a192f]">Email Management</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-[#242b26]">Email Management</h2>
         <p className="text-sm text-gray-500">Review and approve outgoing emails before they are sent to clients</p>
       </div>
 
@@ -121,19 +121,19 @@ const Emails: React.FC = () => {
           { key: 'draft', label: 'Pending', icon: <Clock size={16} />, count: counts.draft_count || 0, color: 'text-amber-600 bg-amber-50 border-amber-200' },
           { key: 'sent', label: 'Sent', icon: <CheckCircle size={16} />, count: counts.sent_count || 0, color: 'text-green-600 bg-green-50 border-green-200' },
           { key: 'cancelled', label: 'Cancelled', icon: <XCircle size={16} />, count: counts.cancelled_count || 0, color: 'text-gray-600 bg-gray-50 border-gray-200' },
-          { key: 'all', label: 'All', icon: <Mail size={16} />, count: counts.total || 0, color: 'text-blue-600 bg-blue-50 border-blue-200' },
+          { key: 'all', label: 'All', icon: <Mail size={16} />, count: counts.total || 0, color: 'text-green-600 bg-green-50 border-green-200' },
         ].map(card => (
           <button
             key={card.key}
             onClick={() => setStatusFilter(card.key)}
             className={`p-3 rounded-lg border text-left transition-all ${
-              statusFilter === card.key ? 'border-[#0a192f] bg-[#0a192f]/5 shadow-sm' : 'border-gray-100 bg-white hover:border-gray-200'
+              statusFilter === card.key ? 'border-[#242b26] bg-[#242b26]/5 shadow-sm' : 'border-gray-100 bg-white hover:border-gray-200'
             }`}
           >
             <span className={`inline-flex items-center gap-1.5 text-xs font-medium ${card.color} px-2 py-0.5 rounded-full`}>
               {card.icon} {card.label}
             </span>
-            <p className="text-xl font-bold text-[#0a192f] mt-2">{card.count}</p>
+            <p className="text-xl font-bold text-[#242b26] mt-2">{card.count}</p>
           </button>
         ))}
       </div>
@@ -146,14 +146,14 @@ const Emails: React.FC = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search by recipient, subject..."
-          className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+          className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
         />
       </div>
 
       {/* Loading */}
       {loading && (
         <div className="flex items-center justify-center py-12">
-          <Loader2 size={24} className="animate-spin text-blue-600" />
+          <Loader2 size={24} className="animate-spin text-green-600" />
         </div>
       )}
 
@@ -178,14 +178,14 @@ const Emails: React.FC = () => {
                   return (
                     <tr key={draft.id} className="hover:bg-gray-50/50 transition-colors">
                       <td className="px-4 sm:px-6 py-4">
-                        <p className="text-sm font-medium text-[#0a192f] truncate max-w-[180px]">{draft.recipient_email}</p>
+                        <p className="text-sm font-medium text-[#242b26] truncate max-w-[180px]">{draft.recipient_email}</p>
                         {draft.recipient_name && <p className="text-xs text-gray-400">{draft.recipient_name}</p>}
                       </td>
                       <td className="px-4 py-4 hidden md:table-cell">
                         <p className="text-sm text-gray-600 truncate max-w-[250px]">{draft.subject}</p>
                       </td>
                       <td className="px-4 py-4 hidden lg:table-cell">
-                        <span className="text-xs px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full font-medium capitalize">{draft.type.replace('_', ' ')}</span>
+                        <span className="text-xs px-2 py-0.5 bg-green-50 text-green-600 rounded-full font-medium capitalize">{draft.type.replace('_', ' ')}</span>
                       </td>
                       <td className="px-4 py-4">
                         <span className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full ${sc.color}`}>
@@ -198,12 +198,12 @@ const Emails: React.FC = () => {
                       </td>
                       <td className="px-4 sm:px-6 py-4 text-right">
                         <div className="flex items-center justify-end gap-1">
-                          <button onClick={() => setPreviewDraft(draft)} className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-[#0a192f]" title="Preview">
+                          <button onClick={() => setPreviewDraft(draft)} className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-[#242b26]" title="Preview">
                             <Eye size={16} />
                           </button>
                           {draft.status === 'draft' && (
                             <>
-                              <button onClick={() => { setSelectedDraft(draft); setEditSubject(draft.subject); }} className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-blue-600" title="Edit">
+                              <button onClick={() => { setSelectedDraft(draft); setEditSubject(draft.subject); }} className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-green-600" title="Edit">
                                 <Edit3 size={16} />
                               </button>
                               <button
@@ -241,7 +241,7 @@ const Emails: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setSelectedDraft(null)}>
           <div className="bg-white rounded-lg shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <h3 className="text-lg font-bold text-[#0a192f]">Edit Email Draft</h3>
+              <h3 className="text-lg font-bold text-[#242b26]">Edit Email Draft</h3>
               <button onClick={() => setSelectedDraft(null)} className="p-1 hover:bg-gray-100 rounded-lg"><X size={20} className="text-gray-500" /></button>
             </div>
             <div className="p-6 space-y-4">
@@ -255,17 +255,17 @@ const Emails: React.FC = () => {
                   type="text"
                   value={editSubject}
                   onChange={(e) => setEditSubject(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
                 />
               </div>
               {selectedDraft.related_tracking_id && (
-                <div className="bg-blue-50 p-3 rounded-lg">
-                  <p className="text-xs text-blue-600 font-medium">Related Shipment: <span className="font-mono">{selectedDraft.related_tracking_id}</span></p>
+                <div className="bg-green-50 p-3 rounded-lg">
+                  <p className="text-xs text-green-600 font-medium">Related Shipment: <span className="font-mono">{selectedDraft.related_tracking_id}</span></p>
                 </div>
               )}
               <div className="flex gap-3 pt-2">
                 <button onClick={() => setSelectedDraft(null)} className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50">Cancel</button>
-                <button onClick={() => handleUpdateSubject(selectedDraft.id)} className="flex-1 px-4 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-500 flex items-center justify-center gap-2">
+                <button onClick={() => handleUpdateSubject(selectedDraft.id)} className="flex-1 px-4 py-2.5 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-500 flex items-center justify-center gap-2">
                   <Edit3 size={14} /> Save Changes
                 </button>
                 <button
@@ -288,7 +288,7 @@ const Emails: React.FC = () => {
           <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <div>
-                <h3 className="text-lg font-bold text-[#0a192f]">Email Preview</h3>
+                <h3 className="text-lg font-bold text-[#242b26]">Email Preview</h3>
                 <p className="text-xs text-gray-500 mt-0.5">To: {previewDraft.recipient_email}</p>
               </div>
               <button onClick={() => setPreviewDraft(null)} className="p-1 hover:bg-gray-100 rounded-lg"><X size={20} className="text-gray-500" /></button>
@@ -296,7 +296,7 @@ const Emails: React.FC = () => {
             <div className="p-6">
               <div className="bg-gray-50 rounded-lg p-3 mb-4">
                 <p className="text-xs text-gray-500 uppercase font-medium mb-1">Subject</p>
-                <p className="text-sm font-medium text-[#0a192f]">{previewDraft.subject}</p>
+                <p className="text-sm font-medium text-[#242b26]">{previewDraft.subject}</p>
               </div>
               <div
                 className="border border-gray-200 rounded-lg overflow-hidden"

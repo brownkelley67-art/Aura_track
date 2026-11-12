@@ -187,7 +187,7 @@ const Messages: React.FC = () => {
         <div className="px-5 py-4 border-b border-gray-100 flex-shrink-0">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-bold text-[#0a192f]">Messages</h2>
+              <h2 className="text-lg font-bold text-[#242b26]">Messages</h2>
               {unreadTotal > 0 && (
                 <span className="px-2 py-0.5 text-[10px] font-bold bg-red-500 text-white rounded-full">{unreadTotal}</span>
               )}
@@ -198,7 +198,7 @@ const Messages: React.FC = () => {
                   key={f}
                   onClick={() => setFilter(f)}
                   className={`px-2.5 py-1 text-[11px] font-medium rounded-md transition-colors ${
-                    filter === f ? 'bg-[#0a192f] text-white' : 'text-gray-500 hover:bg-gray-100'
+                    filter === f ? 'bg-[#242b26] text-white' : 'text-gray-500 hover:bg-gray-100'
                   }`}
                 >
                   {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -213,7 +213,7 @@ const Messages: React.FC = () => {
               placeholder="Search conversations..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+              className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
             />
           </div>
         </div>
@@ -236,18 +236,18 @@ const Messages: React.FC = () => {
                 key={convo.id}
                 onClick={() => openConversation(convo)}
                 className={`w-full text-left px-5 py-3.5 border-b border-gray-50 transition-colors hover:bg-gray-50 ${
-                  selectedId === convo.id ? 'bg-blue-50/60 border-l-[3px] border-l-blue-500' : ''
+                  selectedId === convo.id ? 'bg-green-50/60 border-l-[3px] border-l-green-500' : ''
                 }`}
               >
                 <div className="flex items-start gap-3">
                   <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold ${
-                    convo.status === 'open' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'
+                    convo.status === 'open' ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-500'
                   }`}>
                     {convo.visitor_name?.charAt(0).toUpperCase() || 'V'}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-0.5">
-                      <span className={`text-sm font-semibold truncate ${convo.unread_count > 0 ? 'text-[#0a192f]' : 'text-gray-700'}`}>
+                      <span className={`text-sm font-semibold truncate ${convo.unread_count > 0 ? 'text-[#242b26]' : 'text-gray-700'}`}>
                         {convo.visitor_name}
                       </span>
                       <span className="text-[10px] text-gray-400 flex-shrink-0 ml-2">{formatTime(convo.last_message_at)}</span>
@@ -257,12 +257,12 @@ const Messages: React.FC = () => {
                     )}
                     <div className="flex items-center justify-between mt-1">
                       <p className={`text-xs truncate ${convo.unread_count > 0 ? 'text-gray-700 font-medium' : 'text-gray-500'}`}>
-                        {convo.last_sender_type === 'admin' && <span className="text-blue-500">You: </span>}
+                        {convo.last_sender_type === 'admin' && <span className="text-green-500">You: </span>}
                         {convo.last_message || 'No messages'}
                       </p>
                       <div className="flex items-center gap-1.5 flex-shrink-0 ml-2">
                         {convo.unread_count > 0 && (
-                          <span className="w-5 h-5 bg-blue-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                          <span className="w-5 h-5 bg-green-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
                             {convo.unread_count}
                           </span>
                         )}
@@ -301,12 +301,12 @@ const Messages: React.FC = () => {
                   <X size={18} />
                 </button>
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                  selectedConvo?.status === 'open' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'
+                  selectedConvo?.status === 'open' ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-500'
                 }`}>
                   {selectedConvo?.visitor_name?.charAt(0).toUpperCase() || 'V'}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-[#0a192f]">{selectedConvo?.visitor_name}</p>
+                  <p className="text-sm font-semibold text-[#242b26]">{selectedConvo?.visitor_name}</p>
                   <p className="text-[11px] text-gray-400">
                     {selectedConvo?.visitor_email || 'No email'}
                     {' · '}
@@ -368,15 +368,15 @@ const Messages: React.FC = () => {
                             <span className="text-[10px] text-gray-500 font-medium">{msg.sender_name}</span>
                             <span className="text-[10px] text-gray-400">{formatFullTime(msg.created_at)}</span>
                             {isAdmin && (
-                              <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center">
-                                <CheckCheck size={10} className="text-blue-500" />
+                              <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
+                                <CheckCheck size={10} className="text-green-500" />
                               </div>
                             )}
                           </div>
                           <div
                             className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
                               isAdmin
-                                ? 'bg-[#0a192f] text-white rounded-br-md'
+                                ? 'bg-[#242b26] text-white rounded-br-md'
                                 : 'bg-white text-gray-800 border border-gray-200 rounded-bl-md shadow-sm'
                             }`}
                           >
@@ -399,7 +399,7 @@ const Messages: React.FC = () => {
                   <span>This conversation is closed.</span>
                   <button
                     onClick={() => selectedConvo && toggleConvoStatus(selectedConvo)}
-                    className="text-blue-500 hover:underline font-medium"
+                    className="text-green-500 hover:underline font-medium"
                   >
                     Reopen
                   </button>
@@ -412,13 +412,13 @@ const Messages: React.FC = () => {
                     onKeyDown={handleKeyDown}
                     placeholder="Type your reply..."
                     rows={1}
-                    className="flex-1 resize-none px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none max-h-24"
+                    className="flex-1 resize-none px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none max-h-24"
                     style={{ minHeight: '42px' }}
                   />
                   <button
                     onClick={sendReply}
                     disabled={!replyText.trim() || sending}
-                    className="h-[42px] px-4 rounded-xl bg-[#0a192f] text-white flex items-center justify-center gap-2 hover:bg-[#112d57] transition-colors disabled:opacity-40 text-sm font-medium flex-shrink-0"
+                    className="h-[42px] px-4 rounded-xl bg-[#242b26] text-white flex items-center justify-center gap-2 hover:bg-[#39433d] transition-colors disabled:opacity-40 text-sm font-medium flex-shrink-0"
                   >
                     {sending ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />}
                     Reply

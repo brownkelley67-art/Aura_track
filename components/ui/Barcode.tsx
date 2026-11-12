@@ -41,7 +41,7 @@ const Barcode: React.FC<BarcodeProps> = ({ value, width = 200, height = 60 }) =>
     if (i % 2 === 0) {
       // Even index = black bar
       rects.push(
-        <rect key={i} x={x} y={0} width={w} height={height} fill="#0a192f" />
+        <rect key={i} x={x} y={0} width={w} height={height} fill="#242b26" />
       );
     }
     x += w;

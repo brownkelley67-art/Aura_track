@@ -19,7 +19,7 @@ interface ShipmentsProps {
 const statusConfig: Record<string, { color: string; icon: React.ReactNode }> = {
   pending: { color: 'bg-gray-100 text-gray-700', icon: <Clock size={12} /> },
   'picked-up': { color: 'bg-purple-100 text-purple-700', icon: <Package size={12} /> },
-  'in-transit': { color: 'bg-blue-100 text-blue-700', icon: <Truck size={12} /> },
+  'in-transit': { color: 'bg-lime-100 text-lime-800', icon: <Truck size={12} /> },
   'out-for-delivery': { color: 'bg-cyan-100 text-cyan-700', icon: <MapPin size={12} /> },
   delivered: { color: 'bg-green-100 text-green-700', icon: <CheckCircle size={12} /> },
   returned: { color: 'bg-red-100 text-red-700', icon: <RotateCcw size={12} /> },
@@ -108,7 +108,7 @@ const CityAutocomplete: React.FC<{
           onChange={(e) => handleInput(e.target.value)}
           onFocus={() => { if (suggestions.length > 0) setOpen(true); }}
           placeholder={placeholder}
-          className="w-full px-4 py-2.5 pr-8 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+          className="w-full px-4 py-2.5 pr-8 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
         />
         {loading ? (
           <Loader2 size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 animate-spin" />
@@ -123,9 +123,9 @@ const CityAutocomplete: React.FC<{
               key={i}
               type="button"
               onClick={() => handleSelect(s)}
-              className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#0a192f] transition-colors flex items-start gap-2 border-b border-gray-50 last:border-0"
+              className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#242b26] transition-colors flex items-start gap-2 border-b border-gray-50 last:border-0"
             >
-              <MapPin size={14} className="text-blue-500 mt-0.5 flex-shrink-0" />
+              <MapPin size={14} className="text-green-500 mt-0.5 flex-shrink-0" />
               <span className="line-clamp-2">{s.place_name}</span>
             </button>
           ))}
@@ -350,10 +350,10 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#0a192f]">Shipment Management</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-[#242b26]">Shipment Management</h2>
           <p className="text-sm text-gray-500">{shipments.length} total shipments</p>
         </div>
-        <button onClick={() => setShowCreate(true)} className="px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-500 transition-colors flex items-center gap-2 self-start sm:self-auto">
+        <button onClick={() => setShowCreate(true)} className="px-5 py-2.5 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-500 transition-colors flex items-center gap-2 self-start sm:self-auto">
           <Plus size={16} /> Create Shipment
         </button>
       </div>
@@ -368,13 +368,13 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
               key={status}
               onClick={() => setStatusFilter(statusFilter === status ? 'all' : status)}
               className={`p-3 rounded-lg border text-left transition-all ${
-                statusFilter === status ? 'border-[#0a192f] bg-[#0a192f]/5 shadow-sm' : 'border-gray-100 bg-white hover:border-gray-200'
+                statusFilter === status ? 'border-[#242b26] bg-[#242b26]/5 shadow-sm' : 'border-gray-100 bg-white hover:border-gray-200'
               }`}
             >
               <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded-full ${conf.color}`}>
                 {conf.icon} {status.replace('-', ' ')}
               </span>
-              <p className="text-xl font-bold text-[#0a192f] mt-2">{count}</p>
+              <p className="text-xl font-bold text-[#242b26] mt-2">{count}</p>
             </button>
           );
         })}
@@ -385,7 +385,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowCreate(false)}>
           <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <h3 className="text-lg font-bold text-[#0a192f]">Create New Shipment</h3>
+              <h3 className="text-lg font-bold text-[#242b26]">Create New Shipment</h3>
               <button onClick={() => setShowCreate(false)} className="p-1 hover:bg-gray-100 rounded-lg"><X size={20} className="text-gray-500" /></button>
             </div>
             <div className="p-6 space-y-5">
@@ -393,34 +393,34 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Sender Name *</label>
                   <input type="text" value={form.sender} onChange={(e) => setForm(p => ({ ...p, sender: e.target.value }))}
-                    placeholder="Company or full name" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none" />
+                    placeholder="Company or full name" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Receiver Name *</label>
                   <input type="text" value={form.receiver} onChange={(e) => setForm(p => ({ ...p, receiver: e.target.value }))}
-                    placeholder="Company or full name" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none" />
+                    placeholder="Company or full name" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Sender Email</label>
                   <input type="email" value={form.senderEmail} onChange={(e) => setForm(p => ({ ...p, senderEmail: e.target.value }))}
-                    placeholder="sender@company.com" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none" />
+                    placeholder="sender@company.com" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Receiver Email</label>
                   <input type="email" value={form.receiverEmail} onChange={(e) => setForm(p => ({ ...p, receiverEmail: e.target.value }))}
-                    placeholder="receiver@company.com" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none" />
+                    placeholder="receiver@company.com" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
                 </div>
                 <CityAutocomplete value={form.origin} onChange={(val) => setForm(p => ({ ...p, origin: val }))} placeholder="Search city, e.g. New York" label="Origin *" />
                 <CityAutocomplete value={form.destination} onChange={(val) => setForm(p => ({ ...p, destination: val }))} placeholder="Search city, e.g. Los Angeles" label="Destination *" />
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Weight (kg)</label>
                   <input type="number" value={form.weight} onChange={(e) => setForm(p => ({ ...p, weight: e.target.value }))}
-                    placeholder="0.0" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none" />
+                    placeholder="0.0" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Cargo Type</label>
                   <select value={form.type} onChange={(e) => setForm(p => ({ ...p, type: e.target.value }))}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] outline-none bg-white">
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] outline-none bg-white">
                     <option>General</option><option>Electronics</option><option>Pharmaceuticals</option>
                     <option>Perishables</option><option>Auto Parts</option><option>Documents</option>
                     <option>Fragile</option><option>Hazardous</option><option>Live Animals</option>
@@ -429,7 +429,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
                 <div className="sm:col-span-2">
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Assign Courier (Optional)</label>
                   <select value={form.courierId} onChange={(e) => setForm(p => ({ ...p, courierId: e.target.value }))}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] outline-none bg-white">
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] outline-none bg-white">
                     <option value="">Unassigned — Assign Later</option>
                     {couriers.filter(c => c.status === 'active').map(c => (
                       <option key={c.courierId} value={c.courierId}>{c.name} ({c.courierId}) — {c.zone}</option>
@@ -442,11 +442,11 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
               {MAPBOX_TOKEN && form.origin && form.destination && (
                 <div className="bg-gray-50 rounded-lg p-4 space-y-3">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm font-medium text-[#0a192f]">
-                      <Navigation size={14} className="text-blue-600" /> Transport Planner
+                    <div className="flex items-center gap-2 text-sm font-medium text-[#242b26]">
+                      <Navigation size={14} className="text-green-600" /> Transport Planner
                     </div>
                     <button onClick={previewRoute} type="button" disabled={planLoading}
-                      className="text-xs px-3 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition-colors flex items-center gap-1 disabled:opacity-50">
+                      className="text-xs px-3 py-1.5 bg-green-600 text-white rounded-md hover:bg-green-500 transition-colors flex items-center gap-1 disabled:opacity-50">
                       {planLoading ? <Loader2 size={12} className="animate-spin" /> : <MapPin size={12} />}
                       {planLoading ? 'Calculating...' : 'Preview Route'}
                     </button>
@@ -464,7 +464,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
                       <div>
                         <label className="text-[10px] text-gray-400 uppercase font-semibold tracking-wide">🎯 Target delivery date &amp; time (filters plans)</label>
                         <input type="datetime-local" value={targetDate} onChange={e => setTargetDate(e.target.value)}
-                          className="mt-1 w-full px-3 py-1.5 border border-gray-200 rounded-lg text-xs focus:border-blue-500 outline-none" />
+                          className="mt-1 w-full px-3 py-1.5 border border-gray-200 rounded-lg text-xs focus:border-green-500 outline-none" />
                       </div>
 
                       <p className="text-[10px] text-gray-400 uppercase font-semibold tracking-wide">Select transport plan</p>
@@ -476,19 +476,19 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
                           <button key={plan.id} type="button"
                             onClick={() => { setSelectedPlanId(plan.id); setForm(p => ({ ...p, estimatedDelivery: isoToLocalDt(plan.estimatedDeliveryDate) })); }}
                             className={`w-full text-left p-3 rounded-lg border-2 transition-all ${
-                              isSelected ? 'border-blue-600 bg-blue-50' :
+                              isSelected ? 'border-green-600 bg-green-50' :
                               !canMeet && targetDate ? 'border-gray-100 opacity-50' :
-                              'border-gray-200 hover:border-blue-300 bg-white'
+                              'border-gray-200 hover:border-green-300 bg-white'
                             }`}>
                             <div className="flex items-center justify-between mb-1.5">
                               <div className="flex items-center gap-2">
                                 <span className="text-base">{plan.icon}</span>
-                                <span className="text-sm font-semibold text-[#0a192f]">{plan.planName}</span>
+                                <span className="text-sm font-semibold text-[#242b26]">{plan.planName}</span>
                                 {plan.isRecommended && <span className="text-[9px] px-1.5 py-0.5 bg-green-100 text-green-700 rounded-full font-bold uppercase tracking-wide">★ Recommended</span>}
                                 {!canMeet && targetDate && <span className="text-[9px] px-1.5 py-0.5 bg-red-100 text-red-600 rounded-full font-bold">Too slow</span>}
                               </div>
                               <div className="text-right">
-                                <p className="text-xs font-bold text-[#0a192f]">{formatPlanDuration(plan.totalDurationHours)}</p>
+                                <p className="text-xs font-bold text-[#242b26]">{formatPlanDuration(plan.totalDurationHours)}</p>
                                 <p className="text-[10px] text-gray-400">Est: {formatDeliveryDisplay(plan.estimatedDeliveryDate)}</p>
                               </div>
                             </div>
@@ -507,7 +507,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
                       <div>
                         <label className="text-[10px] text-gray-400 uppercase font-semibold tracking-wide">Override delivery date &amp; time (optional)</label>
                         <input type="datetime-local" value={form.estimatedDelivery} onChange={e => setForm(p => ({ ...p, estimatedDelivery: e.target.value }))}
-                          className="mt-1 w-full px-3 py-1.5 border border-gray-200 rounded-lg text-xs focus:border-blue-500 outline-none" />
+                          className="mt-1 w-full px-3 py-1.5 border border-gray-200 rounded-lg text-xs focus:border-green-500 outline-none" />
                       </div>
                     </div>
                   )}
@@ -517,7 +517,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
               <div className="flex gap-3 pt-2">
                 <button onClick={() => { setShowCreate(false); setRoutePreview(null); setTransportPlans([]); setSelectedPlanId(null); setTargetDate(''); }} className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors">Cancel</button>
                 <button onClick={handleCreate} disabled={!form.sender || !form.receiver || !form.origin || !form.destination || creating}
-                  className="flex-1 px-4 py-2.5 bg-[#0a192f] text-white text-sm font-medium rounded-lg hover:bg-[#112d57] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                  className="flex-1 px-4 py-2.5 bg-[#242b26] text-white text-sm font-medium rounded-lg hover:bg-[#39433d] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2">
                   {creating ? <><Loader2 size={14} className="animate-spin" /> Creating...</> : 'Create Shipment'}
                 </button>
               </div>
@@ -531,26 +531,26 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setSelectedShipment(null)}>
           <div className="bg-white rounded-lg shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <h3 className="text-lg font-bold text-[#0a192f]">Shipment Details</h3>
+              <h3 className="text-lg font-bold text-[#242b26]">Shipment Details</h3>
               <button onClick={() => setSelectedShipment(null)} className="p-1 hover:bg-gray-100 rounded-lg"><X size={20} className="text-gray-500" /></button>
             </div>
             <div className="p-6 space-y-4">
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Tracking ID</p>
-                <p className="text-xl font-mono font-bold text-[#0a192f]">{selectedShipment.trackingId}</p>
+                <p className="text-xl font-mono font-bold text-[#242b26]">{selectedShipment.trackingId}</p>
               </div>
               <div className="grid grid-cols-2 gap-4 text-sm">
-                <div><p className="text-xs text-gray-500">Sender</p><p className="font-medium text-[#0a192f]">{selectedShipment.sender}</p></div>
-                <div><p className="text-xs text-gray-500">Receiver</p><p className="font-medium text-[#0a192f]">{selectedShipment.receiver}</p></div>
-                <div><p className="text-xs text-gray-500">Origin</p><p className="font-medium text-[#0a192f]">{selectedShipment.origin}</p></div>
-                <div><p className="text-xs text-gray-500">Destination</p><p className="font-medium text-[#0a192f]">{selectedShipment.destination}</p></div>
-                <div><p className="text-xs text-gray-500">Courier</p><p className="font-medium text-[#0a192f]">{selectedShipment.courierName}</p></div>
-                <div><p className="text-xs text-gray-500">Weight</p><p className="font-medium text-[#0a192f]">{selectedShipment.weight}</p></div>
+                <div><p className="text-xs text-gray-500">Sender</p><p className="font-medium text-[#242b26]">{selectedShipment.sender}</p></div>
+                <div><p className="text-xs text-gray-500">Receiver</p><p className="font-medium text-[#242b26]">{selectedShipment.receiver}</p></div>
+                <div><p className="text-xs text-gray-500">Origin</p><p className="font-medium text-[#242b26]">{selectedShipment.origin}</p></div>
+                <div><p className="text-xs text-gray-500">Destination</p><p className="font-medium text-[#242b26]">{selectedShipment.destination}</p></div>
+                <div><p className="text-xs text-gray-500">Courier</p><p className="font-medium text-[#242b26]">{selectedShipment.courierName}</p></div>
+                <div><p className="text-xs text-gray-500">Weight</p><p className="font-medium text-[#242b26]">{selectedShipment.weight}</p></div>
               </div>
               <div>
                 <p className="text-xs text-gray-500 mb-2">Progress</p>
                 <div className="w-full bg-gray-200 rounded-full h-2.5">
-                  <div className={`h-2.5 rounded-full transition-all ${selectedShipment.isPaused ? 'bg-amber-500' : 'bg-blue-600'}`}
+                  <div className={`h-2.5 rounded-full transition-all ${selectedShipment.isPaused ? 'bg-amber-500' : 'bg-green-600'}`}
                     style={{ width: `${selectedShipment.progress}%` }} />
                 </div>
                 <p className="text-xs text-gray-400 mt-1">{selectedShipment.progress}% complete {selectedShipment.isPaused && '(PAUSED)'}</p>
@@ -582,7 +582,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by tracking ID, sender, or receiver..."
-            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none" />
+            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
         </div>
       </div>
 
@@ -606,7 +606,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
                 return (
                   <tr key={shipment.id} className="hover:bg-gray-50/50 transition-colors">
                     <td className="px-4 sm:px-6 py-4">
-                      <p className="text-sm font-mono font-medium text-[#0a192f]">{shipment.trackingId}</p>
+                      <p className="text-sm font-mono font-medium text-[#242b26]">{shipment.trackingId}</p>
                       <p className="text-xs text-gray-400">{shipment.type} · {shipment.weight}</p>
                     </td>
                     <td className="px-4 py-4 hidden md:table-cell">
@@ -627,7 +627,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
                     <td className="px-4 py-4 hidden sm:table-cell">
                       <div className="flex items-center gap-2 min-w-[120px]">
                         <div className="flex-1 bg-gray-200 rounded-full h-1.5">
-                          <div className={`h-1.5 rounded-full ${shipment.isPaused ? 'bg-amber-500' : 'bg-blue-600'}`}
+                          <div className={`h-1.5 rounded-full ${shipment.isPaused ? 'bg-amber-500' : 'bg-green-600'}`}
                             style={{ width: `${shipment.progress}%` }} />
                         </div>
                         <span className="text-xs text-gray-500 w-8">{shipment.progress}%</span>
@@ -635,10 +635,10 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
                     </td>
                     <td className="px-4 sm:px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-1">
-                        <button onClick={() => setSelectedShipment(shipment)} className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-[#0a192f]" title="View Details">
+                        <button onClick={() => setSelectedShipment(shipment)} className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-[#242b26]" title="View Details">
                           <Eye size={16} />
                         </button>
-                        <button onClick={() => handleOpenEdit(shipment)} className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-blue-600" title="Edit Shipment">
+                        <button onClick={() => handleOpenEdit(shipment)} className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-green-600" title="Edit Shipment">
                           <Edit2 size={16} />
                         </button>
                         {shipment.status !== 'delivered' && (
@@ -667,7 +667,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <div>
-                <h3 className="text-lg font-bold text-[#0a192f]">Edit Shipment</h3>
+                <h3 className="text-lg font-bold text-[#242b26]">Edit Shipment</h3>
                 <p className="text-xs text-gray-400 font-mono">{editModal.shipment.trackingId}</p>
               </div>
               <button onClick={() => setEditModal({ open: false, shipment: null })} className="p-1 hover:bg-gray-100 rounded-lg"><X size={20} className="text-gray-500" /></button>
@@ -677,28 +677,28 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Sender Name</label>
                   <input type="text" value={editForm.senderName} onChange={e => setEditForm(p => ({ ...p, senderName: e.target.value }))}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] outline-none" />
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Sender Email</label>
                   <input type="email" value={editForm.senderEmail} onChange={e => setEditForm(p => ({ ...p, senderEmail: e.target.value }))}
-                    placeholder="sender@example.com" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] outline-none" />
+                    placeholder="sender@example.com" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Receiver Name</label>
                   <input type="text" value={editForm.receiverName} onChange={e => setEditForm(p => ({ ...p, receiverName: e.target.value }))}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] outline-none" />
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Receiver Email</label>
                   <input type="email" value={editForm.receiverEmail} onChange={e => setEditForm(p => ({ ...p, receiverEmail: e.target.value }))}
-                    placeholder="receiver@example.com" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] outline-none" />
+                    placeholder="receiver@example.com" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] outline-none" />
                 </div>
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Estimated Delivery — Date &amp; Time</label>
                 <input type="datetime-local" value={editForm.estimatedDelivery} onChange={e => setEditForm(p => ({ ...p, estimatedDelivery: e.target.value }))}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] outline-none" />
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] outline-none" />
                 {editForm.estimatedDelivery && (
                   <p className="text-[10px] text-gray-400 mt-1">⏱ {formatDeliveryDisplay(localDtToISO(editForm.estimatedDelivery))}</p>
                 )}
@@ -706,19 +706,19 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Description</label>
                 <input type="text" value={editForm.description} onChange={e => setEditForm(p => ({ ...p, description: e.target.value }))}
-                  placeholder="Cargo description..." className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] outline-none" />
+                  placeholder="Cargo description..." className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] outline-none" />
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Special Instructions</label>
                 <textarea value={editForm.specialInstructions} onChange={e => setEditForm(p => ({ ...p, specialInstructions: e.target.value }))}
                   rows={2} placeholder="Handle with care, temperature-sensitive, etc..."
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] outline-none resize-none" />
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] outline-none resize-none" />
               </div>
               <div className="flex gap-3 pt-2">
                 <button onClick={() => setEditModal({ open: false, shipment: null })}
                   className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors">Cancel</button>
                 <button onClick={handleSaveEdit} disabled={saving}
-                  className="flex-1 px-4 py-2.5 bg-[#0a192f] text-white text-sm font-medium rounded-lg hover:bg-[#112d57] transition-colors disabled:opacity-40 flex items-center justify-center gap-2">
+                  className="flex-1 px-4 py-2.5 bg-[#242b26] text-white text-sm font-medium rounded-lg hover:bg-[#39433d] transition-colors disabled:opacity-40 flex items-center justify-center gap-2">
                   {saving ? <><Loader2 size={14} className="animate-spin" /> Saving...</> : '💾 Save Changes'}
                 </button>
               </div>
@@ -732,7 +732,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setPauseModal({ open: false, shipment: null })}>
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-md" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <h3 className="text-lg font-bold text-[#0a192f]">
+              <h3 className="text-lg font-bold text-[#242b26]">
                 {pauseModal.shipment.isPaused ? '▶ Resume Shipment' : '⏸ Pause Shipment'}
               </h3>
               <button onClick={() => setPauseModal({ open: false, shipment: null })} className="p-1 hover:bg-gray-100 rounded-lg"><X size={20} className="text-gray-500" /></button>
@@ -741,7 +741,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
               <div className="bg-gray-50 px-4 py-3 rounded-lg flex items-center justify-between">
                 <div>
                   <p className="text-xs text-gray-400 uppercase tracking-wide">Shipment</p>
-                  <p className="font-mono font-bold text-[#0a192f]">{pauseModal.shipment.trackingId}</p>
+                  <p className="font-mono font-bold text-[#242b26]">{pauseModal.shipment.trackingId}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-gray-400">{pauseModal.shipment.origin}</p>
@@ -754,7 +754,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
                   <div>
                     <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Hold Category *</label>
                     <select value={pauseCategory} onChange={e => setPauseCategory(e.target.value)}
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] outline-none bg-white">
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] outline-none bg-white">
                       <option value="">Select a category...</option>
                       {['Customs Hold', 'Weather Delay', 'Port Congestion', 'Document Issue', 'Transit Change', 'Recipient Unavailable', 'Security Check', 'Other'].map(c => (
                         <option key={c}>{c}</option>
@@ -765,7 +765,7 @@ const Shipments: React.FC<ShipmentsProps> = ({ shipments, setShipments, couriers
                     <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Reason / Details</label>
                     <textarea value={pauseReason} onChange={e => setPauseReason(e.target.value)} rows={3}
                       placeholder="Brief explanation — this will be included in the customer email..."
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none resize-none" />
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none resize-none" />
                   </div>
                   <div className="flex items-start gap-2 bg-amber-50 border border-amber-200 px-3 py-2.5 rounded-lg">
                     <span className="text-amber-500 mt-0.5">⚡</span>

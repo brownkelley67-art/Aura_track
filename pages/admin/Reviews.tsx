@@ -101,7 +101,7 @@ const AdminReviews: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-[#0a192f]">Customer Reviews</h2>
+          <h2 className="text-2xl font-bold text-[#242b26]">Customer Reviews</h2>
           <p className="text-sm text-gray-500 mt-1">Manage and moderate customer reviews before they go live.</p>
         </div>
       </div>
@@ -109,7 +109,7 @@ const AdminReviews: React.FC = () => {
       {/* Stats Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
-          { label: 'Total', count: counts.total, color: 'bg-blue-50 text-blue-700', icon: <MessageSquare className="w-5 h-5" /> },
+          { label: 'Total', count: counts.total, color: 'bg-green-50 text-green-700', icon: <MessageSquare className="w-5 h-5" /> },
           { label: 'Pending', count: counts.pending, color: 'bg-yellow-50 text-yellow-700', icon: <Clock className="w-5 h-5" /> },
           { label: 'Approved', count: counts.approved, color: 'bg-green-50 text-green-700', icon: <CheckCircle className="w-5 h-5" /> },
           { label: 'Rejected', count: counts.rejected, color: 'bg-red-50 text-red-700', icon: <XCircle className="w-5 h-5" /> },
@@ -133,7 +133,7 @@ const AdminReviews: React.FC = () => {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search by name, email, or content..."
-            className="w-full pl-9 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+            className="w-full pl-9 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
           />
         </div>
         <div className="flex gap-1 bg-gray-100 rounded-lg p-1">
@@ -142,7 +142,7 @@ const AdminReviews: React.FC = () => {
               key={f}
               onClick={() => setFilter(f)}
               className={`px-4 py-2 text-xs font-medium rounded-md transition-all ${
-                filter === f ? 'bg-white text-[#0a192f] shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                filter === f ? 'bg-white text-[#242b26] shadow-sm' : 'text-gray-500 hover:text-gray-700'
               }`}
             >
               {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -180,7 +180,7 @@ const AdminReviews: React.FC = () => {
                 <img src={review.avatar} alt={review.name} className="w-11 h-11 rounded-full object-cover flex-shrink-0" />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap mb-1">
-                    <h4 className="font-semibold text-[#0a192f] text-sm">{review.name}</h4>
+                    <h4 className="font-semibold text-[#242b26] text-sm">{review.name}</h4>
                     {statusBadge(review.status)}
                   </div>
                   <p className="text-xs text-gray-500">{review.role} · {review.email}</p>

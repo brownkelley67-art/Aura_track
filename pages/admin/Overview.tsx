@@ -19,7 +19,7 @@ const Overview: React.FC<OverviewProps> = ({ couriers, shipments, onNavigate }) 
   const paused = shipments.filter(s => s.isPaused).length;
 
   const stats = [
-    { label: 'Total Couriers', value: couriers.length.toString(), icon: <Users size={22} />, change: '+3 this week', up: true, color: 'bg-blue-50 text-blue-600' },
+    { label: 'Total Couriers', value: couriers.length.toString(), icon: <Users size={22} />, change: '+3 this week', up: true, color: 'bg-green-50 text-green-600' },
     { label: 'Active Shipments', value: inTransit.toString(), icon: <Truck size={22} />, change: '+12 today', up: true, color: 'bg-emerald-50 text-emerald-600' },
     { label: 'Delivered', value: delivered.toString(), icon: <CheckCircle size={22} />, change: '+8 today', up: true, color: 'bg-green-50 text-green-600' },
     { label: 'Pending Pickup', value: pending.toString(), icon: <Clock size={22} />, change: 'Needs attention', up: false, color: 'bg-amber-50 text-amber-600' },
@@ -48,7 +48,7 @@ const Overview: React.FC<OverviewProps> = ({ couriers, shipments, onNavigate }) 
               </span>
             </div>
             <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">{stat.label}</h3>
-            <p className="text-2xl sm:text-3xl font-bold text-[#0a192f]">{stat.value}</p>
+            <p className="text-2xl sm:text-3xl font-bold text-[#242b26]">{stat.value}</p>
           </div>
         ))}
       </div>
@@ -57,7 +57,7 @@ const Overview: React.FC<OverviewProps> = ({ couriers, shipments, onNavigate }) 
         {/* Recent Activity */}
         <div className="lg:col-span-2 bg-white rounded-lg border border-gray-100 shadow-sm">
           <div className="px-5 sm:px-6 py-4 border-b border-gray-100 flex justify-between items-center">
-            <h2 className="font-bold text-[#0a192f] flex items-center gap-2"><Activity size={18} /> Recent Activity</h2>
+            <h2 className="font-bold text-[#242b26] flex items-center gap-2"><Activity size={18} /> Recent Activity</h2>
             <span className="text-xs text-gray-400">Live</span>
           </div>
           <div className="divide-y divide-gray-50">
@@ -66,7 +66,7 @@ const Overview: React.FC<OverviewProps> = ({ couriers, shipments, onNavigate }) 
                 <div className={`w-2 h-2 mt-2 rounded-full flex-shrink-0 ${
                   item.type === 'alert' ? 'bg-amber-500' :
                   item.type === 'complete' ? 'bg-green-500' :
-                  item.type === 'delivery' ? 'bg-blue-500' :
+                  item.type === 'delivery' ? 'bg-green-500' :
                   item.type === 'register' ? 'bg-purple-500' :
                   item.type === 'milestone' ? 'bg-emerald-500' :
                   'bg-gray-400'
@@ -84,12 +84,12 @@ const Overview: React.FC<OverviewProps> = ({ couriers, shipments, onNavigate }) 
         <div className="space-y-6">
           {/* Quick Actions */}
           <div className="bg-white rounded-lg border border-gray-100 shadow-sm p-5 sm:p-6">
-            <h2 className="font-bold text-[#0a192f] mb-4">Quick Actions</h2>
+            <h2 className="font-bold text-[#242b26] mb-4">Quick Actions</h2>
             <div className="space-y-2">
-              <button onClick={() => onNavigate('couriers')} className="w-full text-left px-4 py-3 bg-[#0a192f] text-white text-sm font-medium rounded-lg hover:bg-[#112d57] transition-colors flex items-center gap-2">
+              <button onClick={() => onNavigate('couriers')} className="w-full text-left px-4 py-3 bg-[#242b26] text-white text-sm font-medium rounded-lg hover:bg-[#39433d] transition-colors flex items-center gap-2">
                 <Users size={16} /> Register New Courier
               </button>
-              <button onClick={() => onNavigate('shipments')} className="w-full text-left px-4 py-3 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-500 transition-colors flex items-center gap-2">
+              <button onClick={() => onNavigate('shipments')} className="w-full text-left px-4 py-3 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-500 transition-colors flex items-center gap-2">
                 <Package size={16} /> Create Shipment
               </button>
               <button onClick={() => onNavigate('track-map')} className="w-full text-left px-4 py-3 border border-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
@@ -114,7 +114,7 @@ const Overview: React.FC<OverviewProps> = ({ couriers, shipments, onNavigate }) 
 
           {/* Top Couriers */}
           <div className="bg-white rounded-lg border border-gray-100 shadow-sm p-5 sm:p-6">
-            <h2 className="font-bold text-[#0a192f] mb-4 flex items-center gap-2">
+            <h2 className="font-bold text-[#242b26] mb-4 flex items-center gap-2">
               <TrendingUp size={18} /> Top Couriers
             </h2>
             <div className="space-y-3">
@@ -122,7 +122,7 @@ const Overview: React.FC<OverviewProps> = ({ couriers, shipments, onNavigate }) 
                 <div key={c.id} className="flex items-center gap-3">
                   <img src={c.avatar} alt={c.name} className="w-9 h-9 rounded-full object-cover" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-[#0a192f] truncate">{c.name}</p>
+                    <p className="text-sm font-medium text-[#242b26] truncate">{c.name}</p>
                     <p className="text-xs text-gray-400">{c.totalDeliveries} deliveries</p>
                   </div>
                   <div className="flex items-center gap-1 text-xs text-yellow-600 font-medium">

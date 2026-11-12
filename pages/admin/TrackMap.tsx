@@ -18,7 +18,7 @@ interface TrackMapProps {
 }
 
 const statusColors: Record<string, string> = {
-  'in-transit': '#3b82f6',
+  'in-transit': '#84cc16',
   'out-for-delivery': '#06b6d4',
   'paused': '#f59e0b',
   'picked-up': '#8b5cf6',
@@ -254,7 +254,7 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
       const hasCoords = !!origin && !!destination;
       const routeCoordinates = validRouteCoordinates(fullData?.route_data?.coordinates);
       const hasRoute = !!routeCoordinates;
-      const color = statusColors[s.status] || '#3b82f6';
+      const color = statusColors[s.status] || '#16834a';
       const progress = liveProgress[s.trackingId] ?? s.progress;
 
       // Calculate initial marker position
@@ -305,7 +305,7 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
       const eta = liveEta[s.trackingId] || '';
       const popup = new mapboxgl.Popup({ offset: 20, closeButton: false, className: 'shipment-popup' }).setHTML(`
         <div style="padding:8px;min-width:180px;">
-          <div style="font-weight:700;font-size:13px;color:#0a192f;font-family:monospace;">${s.trackingId}</div>
+          <div style="font-weight:700;font-size:13px;color:#242b26;font-family:monospace;">${s.trackingId}</div>
           <div style="font-size:11px;color:#6b7280;margin-top:2px;">${s.origin} → ${s.destination}</div>
           <div style="display:flex;align-items:center;gap:6px;margin-top:6px;">
             <span style="width:8px;height:8px;border-radius:50%;background:${color};"></span>
@@ -435,7 +435,7 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#0a192f]">Live Tracking Map</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-[#242b26]">Live Tracking Map</h2>
           <p className="text-sm text-gray-500">{activeShipments.length} active shipments being tracked</p>
         </div>
         <div className="flex gap-2">
@@ -445,8 +445,8 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
           <button onClick={onRefresh} className="flex items-center gap-1.5 text-xs bg-white px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-600 font-medium transition-colors">
             <RefreshCw size={14} /> Refresh
           </button>
-          <span className="flex items-center gap-1.5 text-xs text-blue-600 bg-blue-50 px-3 py-2 rounded-lg border border-blue-200 font-medium">
-            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" /> Live
+          <span className="flex items-center gap-1.5 text-xs text-green-600 bg-green-50 px-3 py-2 rounded-lg border border-green-200 font-medium">
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" /> Live
           </span>
         </div>
       </div>
@@ -465,7 +465,7 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
           {/* Sidebar Toggle */}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="absolute top-4 left-4 z-10 w-8 h-8 bg-white rounded-lg shadow-lg flex items-center justify-center text-gray-600 hover:text-[#0a192f] transition-colors"
+            className="absolute top-4 left-4 z-10 w-8 h-8 bg-white rounded-lg shadow-lg flex items-center justify-center text-gray-600 hover:text-[#242b26] transition-colors"
           >
             {sidebarOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
           </button>
@@ -482,11 +482,11 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
               >
                 <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
                   <div>
-                    <h3 className="font-bold text-[#0a192f] text-sm">Active Shipments</h3>
+                    <h3 className="font-bold text-[#242b26] text-sm">Active Shipments</h3>
                     <p className="text-xs text-gray-400">{activeShipments.length} being tracked</p>
                   </div>
                   <div className="flex gap-1.5">
-                    <span className="flex items-center gap-1 text-[10px] px-2 py-1 rounded-full bg-blue-50 text-blue-600 font-medium">
+                    <span className="flex items-center gap-1 text-[10px] px-2 py-1 rounded-full bg-green-50 text-green-600 font-medium">
                       <Truck size={10} /> {activeShipments.filter(s => !s.isPaused).length}
                     </span>
                     <span className="flex items-center gap-1 text-[10px] px-2 py-1 rounded-full bg-amber-50 text-amber-600 font-medium">
@@ -510,16 +510,16 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ delay: i * 0.05 }}
-                            className={`p-4 border-b border-gray-50 cursor-pointer transition-colors ${isSelected ? 'bg-blue-50/80 border-l-4 border-l-blue-500' : 'hover:bg-gray-50/50'}`}
+                            className={`p-4 border-b border-gray-50 cursor-pointer transition-colors ${isSelected ? 'bg-green-50/80 border-l-4 border-l-green-500' : 'hover:bg-gray-50/50'}`}
                             onClick={() => focusShipment(s)}
                           >
                             <div className="flex items-start justify-between mb-1.5">
                               <div>
-                                <p className="text-xs font-mono font-bold text-[#0a192f]">{s.trackingId}</p>
+                                <p className="text-xs font-mono font-bold text-[#242b26]">{s.trackingId}</p>
                                 <p className="text-[11px] text-gray-400">{s.courierName}</p>
                               </div>
                               <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-full ${
-                                s.isPaused ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700'
+                                s.isPaused ? 'bg-amber-100 text-amber-700' : 'bg-green-100 text-green-700'
                               }`}>
                                 {s.isPaused ? <Pause size={9} /> : <Navigation size={9} />}
                                 {s.isPaused ? 'Paused' : s.status.replace('-', ' ')}
@@ -542,7 +542,7 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
                             )}
 
                             {liveEta[s.trackingId] && (
-                              <div className="flex items-center gap-1 text-[10px] text-blue-600 font-medium mb-2">
+                              <div className="flex items-center gap-1 text-[10px] text-green-600 font-medium mb-2">
                                 <Clock size={10} />
                                 <span>{liveEta[s.trackingId]}</span>
                               </div>
@@ -550,7 +550,7 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
 
                             <div className="w-full bg-gray-200 rounded-full h-1.5 mb-2">
                               <motion.div
-                                className={`h-1.5 rounded-full ${s.isPaused ? 'bg-amber-500' : 'bg-blue-600'}`}
+                                className={`h-1.5 rounded-full ${s.isPaused ? 'bg-amber-500' : 'bg-green-600'}`}
                                 initial={{ width: 0 }}
                                 animate={{ width: `${Math.round(liveProgress[s.trackingId] ?? s.progress)}%` }}
                                 transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -607,41 +607,41 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
               >
                 <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
                   <div>
-                    <p className="font-mono font-bold text-sm text-[#0a192f]">{selected.trackingId}</p>
+                    <p className="font-mono font-bold text-sm text-[#242b26]">{selected.trackingId}</p>
                     <p className="text-[11px] text-gray-400">{selected.courierName}</p>
                   </div>
                   <button onClick={() => setSelectedId(null)} className="text-gray-400 hover:text-gray-600 text-xs font-medium">Close</button>
                 </div>
                 <div className="p-4 space-y-3">
                   <div className="grid grid-cols-2 gap-3 text-xs">
-                    <div><p className="text-gray-400 text-[10px] uppercase">Origin</p><p className="font-medium text-[#0a192f]">{selected.origin}</p></div>
-                    <div><p className="text-gray-400 text-[10px] uppercase">Destination</p><p className="font-medium text-[#0a192f]">{selected.destination}</p></div>
+                    <div><p className="text-gray-400 text-[10px] uppercase">Origin</p><p className="font-medium text-[#242b26]">{selected.origin}</p></div>
+                    <div><p className="text-gray-400 text-[10px] uppercase">Destination</p><p className="font-medium text-[#242b26]">{selected.destination}</p></div>
                     {selectedFull.route_distance && (
                       <>
-                        <div><p className="text-gray-400 text-[10px] uppercase">Distance</p><p className="font-medium text-[#0a192f]">{formatDistance(selectedFull.route_distance)}</p></div>
-                        <div><p className="text-gray-400 text-[10px] uppercase">Est. Duration</p><p className="font-medium text-[#0a192f]">{formatDuration(selectedFull.route_duration || 0)}</p></div>
+                        <div><p className="text-gray-400 text-[10px] uppercase">Distance</p><p className="font-medium text-[#242b26]">{formatDistance(selectedFull.route_distance)}</p></div>
+                        <div><p className="text-gray-400 text-[10px] uppercase">Est. Duration</p><p className="font-medium text-[#242b26]">{formatDuration(selectedFull.route_duration || 0)}</p></div>
                       </>
                     )}
-                    <div><p className="text-gray-400 text-[10px] uppercase">Cargo</p><p className="font-medium text-[#0a192f]">{selected.type}</p></div>
-                    <div><p className="text-gray-400 text-[10px] uppercase">Weight</p><p className="font-medium text-[#0a192f]">{selected.weight || 'N/A'}</p></div>
+                    <div><p className="text-gray-400 text-[10px] uppercase">Cargo</p><p className="font-medium text-[#242b26]">{selected.type}</p></div>
+                    <div><p className="text-gray-400 text-[10px] uppercase">Weight</p><p className="font-medium text-[#242b26]">{selected.weight || 'N/A'}</p></div>
                   </div>
                   {selectedFull.transport_modes && (
                     <div>
                       <p className="text-gray-400 text-[10px] uppercase mb-1.5">Transport Modes</p>
                       <div className="flex flex-wrap gap-1">
                         {(Array.isArray(selectedFull.transport_modes) ? selectedFull.transport_modes : []).map((mode: string, i: number) => (
-                          <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-medium">{mode}</span>
+                          <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-green-50 text-green-600 font-medium">{mode}</span>
                         ))}
                       </div>
                     </div>
                   )}
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className={`h-2 rounded-full transition-all ${selected.isPaused ? 'bg-amber-500' : 'bg-blue-600'}`} style={{ width: `${Math.round(liveProgress[selected.trackingId] ?? selected.progress)}%` }} />
+                    <div className={`h-2 rounded-full transition-all ${selected.isPaused ? 'bg-amber-500' : 'bg-green-600'}`} style={{ width: `${Math.round(liveProgress[selected.trackingId] ?? selected.progress)}%` }} />
                   </div>
                   <div className="flex justify-between text-[10px] text-gray-400">
                     <span>{Math.round(liveProgress[selected.trackingId] ?? selected.progress)}% complete{selected.isPaused ? ' (PAUSED)' : ''}</span>
                     {liveEta[selected.trackingId] && (
-                      <span className="text-blue-600 font-medium">{liveEta[selected.trackingId]}</span>
+                      <span className="text-green-600 font-medium">{liveEta[selected.trackingId]}</span>
                     )}
                   </div>
                   {/* Pause reason in detail overlay */}
@@ -687,7 +687,7 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
                         <Pause size={18} className="text-amber-600" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-[#0a192f] text-sm">Pause Shipment</h3>
+                        <h3 className="font-bold text-[#242b26] text-sm">Pause Shipment</h3>
                         <p className="text-[11px] text-gray-500 font-mono">{pauseModalShipment.trackingId}</p>
                       </div>
                     </div>
@@ -774,7 +774,7 @@ const TrackMap: React.FC<TrackMapProps> = ({ shipments, setShipments, onRefresh 
           {/* Legend */}
           <div className="absolute bottom-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg border border-gray-200">
             <div className="flex items-center gap-4 text-[11px] text-gray-600 font-medium">
-              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 bg-blue-500 rounded-full" /> In Transit</span>
+              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 bg-green-500 rounded-full" /> In Transit</span>
               <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 bg-amber-500 rounded-full" /> Paused</span>
               <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 bg-green-500 rounded-full" /> Origin</span>
               <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 bg-red-500 rounded-full" /> Destination</span>

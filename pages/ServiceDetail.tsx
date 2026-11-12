@@ -61,20 +61,20 @@ const HeroSection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
           alt={service.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a192f]/95 via-[#0a192f]/80 to-[#0a192f]/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#242b26]/95 via-[#242b26]/80 to-[#242b26]/50" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-20 w-full">
         <Reveal direction="left" delay={0.1} width="100%">
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-2 text-blue-300 hover:text-white transition-colors mb-6 text-sm font-medium group"
+            className="flex items-center gap-2 text-green-300 hover:text-white transition-colors mb-6 text-sm font-medium group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             Back to Home
           </button>
 
-          <div className="inline-block px-4 py-1.5 bg-blue-500/20 text-blue-300 text-xs font-semibold tracking-wider uppercase rounded-full border border-blue-500/30 mb-4">
+          <div className="inline-block px-4 py-1.5 bg-green-500/20 text-green-300 text-xs font-semibold tracking-wider uppercase rounded-full border border-green-500/30 mb-4">
             Our Services
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-4">
@@ -88,7 +88,7 @@ const HeroSection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
             <a
               href="#contact-cta"
               onClick={(e) => { e.preventDefault(); document.getElementById('contact-cta')?.scrollIntoView({ behavior: 'smooth' }); }}
-              className="px-8 py-3.5 bg-blue-600 text-white font-medium hover:bg-blue-500 transition-all shadow-lg hover:shadow-blue-600/25 rounded-sm flex items-center gap-2"
+              className="px-8 py-3.5 bg-green-600 text-white font-medium hover:bg-green-500 transition-all shadow-lg hover:shadow-green-600/25 rounded-sm flex items-center gap-2"
             >
               Get a Quote <ArrowRight size={16} />
             </a>
@@ -130,7 +130,7 @@ const OverviewSection: React.FC<{ service: ServiceDetailType }> = ({ service }) 
               alt={service.title}
               className="w-full h-[350px] sm:h-[450px] object-cover rounded-sm shadow-xl"
             />
-            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-[#0a192f] text-white p-4 sm:p-6 rounded-sm shadow-xl">
+            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-[#242b26] text-white p-4 sm:p-6 rounded-sm shadow-xl">
               <p className="text-3xl sm:text-4xl font-bold">{service.stats[0]?.value}</p>
               <p className="text-xs sm:text-sm text-gray-300">{service.stats[0]?.label}</p>
             </div>
@@ -139,10 +139,10 @@ const OverviewSection: React.FC<{ service: ServiceDetailType }> = ({ service }) 
 
         <Reveal direction="right" delay={0.2}>
           <div className="space-y-5">
-            <div className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold tracking-wider uppercase rounded-full">
+            <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold tracking-wider uppercase rounded-full">
               Overview
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0a192f] leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#242b26] leading-tight">
               {service.overviewTitle}
             </h2>
             {service.overviewParagraphs.map((p, i) => (
@@ -161,10 +161,10 @@ const BenefitsSection: React.FC<{ service: ServiceDetailType }> = ({ service }) 
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <Reveal direction="bottom">
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <div className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
+          <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
             Key Advantages
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#0a192f] mb-4">{service.whyChooseTitle}</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#242b26] mb-4">{service.whyChooseTitle}</h2>
           <p className="text-gray-600">{service.whyChooseIntro}</p>
         </div>
       </Reveal>
@@ -177,10 +177,10 @@ const BenefitsSection: React.FC<{ service: ServiceDetailType }> = ({ service }) 
               transition={{ duration: 0.3 }}
               className="bg-white p-6 sm:p-8 rounded-sm border border-gray-100 h-full flex flex-col group"
             >
-              <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-blue-600 mb-5 group-hover:from-[#0a192f] group-hover:to-blue-800 group-hover:text-white transition-all duration-300">
+              <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center text-green-600 mb-5 group-hover:from-[#242b26] group-hover:to-green-800 group-hover:text-white transition-all duration-300">
                 {iconMap[benefit.icon] || <CheckCircle className="w-6 h-6" />}
               </div>
-              <h3 className="text-lg font-bold text-[#0a192f] mb-2">{benefit.title}</h3>
+              <h3 className="text-lg font-bold text-[#242b26] mb-2">{benefit.title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed flex-1">{benefit.description}</p>
             </motion.div>
           </Reveal>
@@ -196,10 +196,10 @@ const ServiceTypesSection: React.FC<{ service: ServiceDetailType }> = ({ service
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <Reveal direction="bottom">
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <div className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
+          <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
             What We Offer
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#0a192f] mb-4">{service.serviceTypesTitle}</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#242b26] mb-4">{service.serviceTypesTitle}</h2>
           <p className="text-gray-600">{service.serviceTypesIntro}</p>
         </div>
       </Reveal>
@@ -218,7 +218,7 @@ const ServiceTypesSection: React.FC<{ service: ServiceDetailType }> = ({ service
                   alt={st.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f]/70 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#242b26]/70 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <h3 className="text-lg font-bold text-white">{st.title}</h3>
                 </div>
@@ -236,11 +236,11 @@ const ServiceTypesSection: React.FC<{ service: ServiceDetailType }> = ({ service
 
 /* ─── PROCESS SECTION ───────────────────────────────────────────── */
 const ProcessSection: React.FC<{ service: ServiceDetailType }> = ({ service }) => (
-  <section className="py-16 sm:py-24 bg-[#0a192f] text-white overflow-hidden">
+  <section className="py-16 sm:py-24 bg-[#242b26] text-white overflow-hidden">
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <Reveal direction="bottom">
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <div className="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-semibold tracking-wider uppercase rounded-full border border-blue-500/30 mb-4">
+          <div className="inline-block px-3 py-1 bg-green-500/20 text-green-300 text-xs font-semibold tracking-wider uppercase rounded-full border border-green-500/30 mb-4">
             Our Process
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">{service.processTitle}</h2>
@@ -256,10 +256,10 @@ const ProcessSection: React.FC<{ service: ServiceDetailType }> = ({ service }) =
               transition={{ duration: 0.3 }}
               className="relative bg-[#112240] p-6 sm:p-8 rounded-sm border border-gray-700/50 h-full group"
             >
-              <div className="absolute -top-4 left-6 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-blue-600/30">
+              <div className="absolute -top-4 left-6 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-green-600/30">
                 {step.step}
               </div>
-              <h3 className="text-lg font-bold text-white mt-3 mb-3 group-hover:text-blue-300 transition-colors">
+              <h3 className="text-lg font-bold text-white mt-3 mb-3 group-hover:text-green-300 transition-colors">
                 {step.title}
               </h3>
               <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
@@ -277,10 +277,10 @@ const GallerySection: React.FC<{ service: ServiceDetailType }> = ({ service }) =
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <Reveal direction="bottom">
         <div className="text-center mb-12 max-w-3xl mx-auto">
-          <div className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
+          <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
             In Action
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#0a192f] mb-4">{service.title} Operations</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#242b26] mb-4">{service.title} Operations</h2>
         </div>
       </Reveal>
 
@@ -293,7 +293,7 @@ const GallerySection: React.FC<{ service: ServiceDetailType }> = ({ service }) =
                 alt={img.alt}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-[#0a192f]/0 group-hover:bg-[#0a192f]/40 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-[#242b26]/0 group-hover:bg-[#242b26]/40 transition-colors duration-300" />
               <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <p className="text-white text-sm font-medium">{img.alt}</p>
               </div>
@@ -345,10 +345,10 @@ const CTASection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <Reveal direction="left" delay={0.1}>
             <div className="space-y-6">
-              <div className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold tracking-wider uppercase rounded-full">
+              <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold tracking-wider uppercase rounded-full">
                 Get Started
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#0a192f] leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#242b26] leading-tight">
                 {service.ctaTitle}
               </h2>
               <p className="text-gray-600 leading-relaxed text-lg">
@@ -357,21 +357,21 @@ const CTASection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
 
               <div className="space-y-4 pt-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-50 rounded-sm flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5 text-blue-600" />
+                  <div className="w-12 h-12 bg-green-50 rounded-sm flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5 text-green-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#0a192f] text-sm">Call Us</h4>
-                    <p className="text-sm text-gray-500">202-846-4800</p>
+                    <h4 className="font-semibold text-[#242b26] text-sm">Call Us</h4>
+                    <p className="text-sm text-gray-500">332-225-7564</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-50 rounded-sm flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-blue-600" />
+                  <div className="w-12 h-12 bg-green-50 rounded-sm flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-5 h-5 text-green-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#0a192f] text-sm">Email Us</h4>
-                    <p className="text-sm text-gray-500">nexusroutegloballogistics@gmail.com</p>
+                    <h4 className="font-semibold text-[#242b26] text-sm">Email Us</h4>
+                    <p className="text-sm text-gray-500">summitglobalexpress@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -388,7 +388,7 @@ const CTASection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
           </Reveal>
 
           <Reveal direction="right" delay={0.2}>
-            <div className="bg-[#0a192f] rounded-sm p-6 sm:p-8 shadow-2xl">
+            <div className="bg-[#242b26] rounded-sm p-6 sm:p-8 shadow-2xl">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -404,7 +404,7 @@ const CTASection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
                   </p>
                   <button
                     onClick={() => { setSubmitted(false); setForm({ full_name: '', company: '', email: '', phone: '', details: '' }); }}
-                    className="mt-4 px-6 py-2.5 text-sm font-medium text-blue-300 hover:text-white border border-blue-500/30 hover:border-blue-400 rounded-sm transition-all"
+                    className="mt-4 px-6 py-2.5 text-sm font-medium text-green-300 hover:text-white border border-green-500/30 hover:border-green-400 rounded-sm transition-all"
                   >
                     Submit Another Request
                   </button>
@@ -422,7 +422,7 @@ const CTASection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
                           value={form.full_name}
                           onChange={(e) => setForm(f => ({ ...f, full_name: e.target.value }))}
                           required
-                          className="w-full px-4 py-3 bg-[#112240] border border-gray-700 rounded-sm text-sm text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+                          className="w-full px-4 py-3 bg-[#112240] border border-gray-700 rounded-sm text-sm text-white placeholder-gray-500 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none"
                         />
                       </div>
                       <div>
@@ -432,7 +432,7 @@ const CTASection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
                           placeholder="Your Company"
                           value={form.company}
                           onChange={(e) => setForm(f => ({ ...f, company: e.target.value }))}
-                          className="w-full px-4 py-3 bg-[#112240] border border-gray-700 rounded-sm text-sm text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+                          className="w-full px-4 py-3 bg-[#112240] border border-gray-700 rounded-sm text-sm text-white placeholder-gray-500 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none"
                         />
                       </div>
                     </div>
@@ -445,7 +445,7 @@ const CTASection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
                           value={form.email}
                           onChange={(e) => setForm(f => ({ ...f, email: e.target.value }))}
                           required
-                          className="w-full px-4 py-3 bg-[#112240] border border-gray-700 rounded-sm text-sm text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+                          className="w-full px-4 py-3 bg-[#112240] border border-gray-700 rounded-sm text-sm text-white placeholder-gray-500 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none"
                         />
                       </div>
                       <div>
@@ -455,7 +455,7 @@ const CTASection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
                           placeholder="+1 (555) 000-0000"
                           value={form.phone}
                           onChange={(e) => setForm(f => ({ ...f, phone: e.target.value }))}
-                          className="w-full px-4 py-3 bg-[#112240] border border-gray-700 rounded-sm text-sm text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+                          className="w-full px-4 py-3 bg-[#112240] border border-gray-700 rounded-sm text-sm text-white placeholder-gray-500 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none"
                         />
                       </div>
                     </div>
@@ -466,7 +466,7 @@ const CTASection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
                         placeholder={`Tell us about your ${service.title.toLowerCase()} requirements...`}
                         value={form.details}
                         onChange={(e) => setForm(f => ({ ...f, details: e.target.value }))}
-                        className="w-full px-4 py-3 bg-[#112240] border border-gray-700 rounded-sm text-sm text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-none"
+                        className="w-full px-4 py-3 bg-[#112240] border border-gray-700 rounded-sm text-sm text-white placeholder-gray-500 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none resize-none"
                       />
                     </div>
                     {error && (
@@ -475,7 +475,7 @@ const CTASection: React.FC<{ service: ServiceDetailType }> = ({ service }) => {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="w-full px-6 py-3.5 bg-blue-600 text-white font-medium hover:bg-blue-500 transition-all rounded-sm flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full px-6 py-3.5 bg-green-600 text-white font-medium hover:bg-green-500 transition-all rounded-sm flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       {submitting ? (
                         <><Loader2 className="w-4 h-4 animate-spin" /> Submitting...</>
@@ -503,10 +503,10 @@ const OtherServicesSection: React.FC<{ currentSlug: string }> = ({ currentSlug }
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <Reveal direction="bottom">
           <div className="text-center mb-10 max-w-3xl mx-auto">
-            <div className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
+            <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold tracking-wider uppercase rounded-full mb-4">
               Explore More
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#0a192f]">Other Services You May Need</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#242b26]">Other Services You May Need</h2>
           </div>
         </Reveal>
 
@@ -525,12 +525,12 @@ const OtherServicesSection: React.FC<{ currentSlug: string }> = ({ currentSlug }
                       alt={s.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f]/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#242b26]/60 to-transparent" />
                   </div>
                   <div className="p-5">
-                    <h3 className="text-lg font-bold text-[#0a192f] mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-between">
+                    <h3 className="text-lg font-bold text-[#242b26] mb-2 group-hover:text-green-600 transition-colors flex items-center justify-between">
                       {s.title}
-                      <ChevronRight size={16} className="text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+                      <ChevronRight size={16} className="text-gray-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
                     </h3>
                     <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">{s.tagline}</p>
                   </div>
@@ -559,11 +559,11 @@ const ServiceDetailPage: React.FC = () => {
     return (
       <Layout>
         <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
-          <h1 className="text-4xl font-bold text-[#0a192f] mb-4">Service Not Found</h1>
+          <h1 className="text-4xl font-bold text-[#242b26] mb-4">Service Not Found</h1>
           <p className="text-gray-500 mb-8">The service you're looking for doesn't exist.</p>
           <button
             onClick={() => navigate('/')}
-            className="px-6 py-3 bg-[#0a192f] text-white font-medium hover:bg-[#112d57] transition-all rounded-sm flex items-center gap-2"
+            className="px-6 py-3 bg-[#242b26] text-white font-medium hover:bg-[#39433d] transition-all rounded-sm flex items-center gap-2"
           >
             <ArrowLeft size={16} /> Back to Home
           </button>

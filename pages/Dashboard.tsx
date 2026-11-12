@@ -173,7 +173,7 @@ const Dashboard: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Loader2 size={36} className="animate-spin text-[#0a192f]" />
+        <Loader2 size={36} className="animate-spin text-[#242b26]" />
       </div>
     );
   }
@@ -181,18 +181,16 @@ const Dashboard: React.FC = () => {
   // Login screen
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen bg-[#0a192f] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#242b26] flex items-center justify-center p-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden"
         >
-          <div className="bg-[#0a192f] px-8 py-10 text-center">
-            <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mx-auto mb-4">
-              <span className="text-[#0a192f] text-2xl font-bold">NR</span>
-            </div>
-            <h1 className="text-2xl font-bold text-white">NexusRoute Global Logistics</h1>
+          <div className="bg-[#242b26] px-8 py-10 text-center">
+            <img src="/summit-logo.svg" alt="Summit Global Express" className="w-16 h-16 rounded-lg mx-auto mb-4" />
+            <h1 className="text-2xl font-bold text-white">Summit Global Express</h1>
             <p className="text-gray-400 text-sm mt-1">Admin Portal</p>
           </div>
           <form onSubmit={handleLogin} className="p-8 space-y-5">
@@ -211,7 +209,7 @@ const Dashboard: React.FC = () => {
                   onChange={(e) => setLoginForm(p => ({ ...p, username: e.target.value }))}
                   placeholder="Enter your email"
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
                 />
               </div>
             </div>
@@ -225,14 +223,14 @@ const Dashboard: React.FC = () => {
                   onChange={(e) => setLoginForm(p => ({ ...p, password: e.target.value }))}
                   placeholder="••••••••"
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
                 />
               </div>
             </div>
             <button
               type="submit"
               disabled={loginLoading}
-              className="w-full py-3 bg-[#0a192f] text-white font-medium rounded-lg hover:bg-[#112d57] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+              className="w-full py-3 bg-[#242b26] text-white font-medium rounded-lg hover:bg-[#39433d] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {loginLoading ? <Loader2 size={18} className="animate-spin" /> : null}
               {loginLoading ? 'Signing in...' : 'Sign In'}
@@ -263,7 +261,7 @@ const Dashboard: React.FC = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 w-64 bg-[#0a192f] text-gray-300 flex flex-col z-40 transform transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 w-64 bg-[#242b26] text-gray-300 flex flex-col z-40 transform transition-transform duration-300 lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
@@ -271,7 +269,7 @@ const Dashboard: React.FC = () => {
         <div className="h-16 lg:h-20 flex items-center justify-between px-5 border-b border-gray-800 flex-shrink-0">
           <Link to="/" className="text-lg font-bold text-white tracking-tight flex items-center gap-2">
             <div className="w-7 h-7 bg-white rounded-sm flex items-center justify-center">
-              <span className="text-[#0a192f] text-xs font-bold">AT</span>
+              <span className="text-[#242b26] text-xs font-bold">AT</span>
             </div>
             ADMIN
           </Link>
@@ -295,7 +293,7 @@ const Dashboard: React.FC = () => {
               {item.icon}
               <span>{item.label}</span>
               {activePage === item.id && (
-                <div className="ml-auto w-1.5 h-1.5 bg-blue-400 rounded-full" />
+                <div className="ml-auto w-1.5 h-1.5 bg-green-400 rounded-full" />
               )}
             </button>
           ))}
@@ -304,7 +302,7 @@ const Dashboard: React.FC = () => {
         {/* Sidebar Footer */}
         <div className="p-3 border-t border-gray-800 flex-shrink-0">
           <div className="flex items-center gap-3 px-4 py-3 mb-1">
-            <div className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">{initials}</div>
+            <div className="w-9 h-9 rounded-full bg-green-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">{initials}</div>
             <div className="min-w-0">
               <p className="text-sm font-medium text-white truncate">{adminUser?.full_name || 'Admin'}</p>
               <p className="text-xs text-gray-500 truncate">{adminUser?.email || ''}</p>
@@ -334,8 +332,8 @@ const Dashboard: React.FC = () => {
                 <Menu size={20} />
               </button>
               <div>
-                <h1 className="text-lg font-bold text-[#0a192f]">{currentLabel}</h1>
-                <p className="text-xs text-gray-400 hidden sm:block">NexusRoute Global Logistics Admin Portal</p>
+                <h1 className="text-lg font-bold text-[#242b26]">{currentLabel}</h1>
+                <p className="text-xs text-gray-400 hidden sm:block">Summit Global Express Admin Portal</p>
               </div>
             </div>
 
@@ -346,16 +344,16 @@ const Dashboard: React.FC = () => {
                 <input
                   type="text"
                   placeholder="Search..."
-                  className="pl-9 pr-4 py-2 w-48 lg:w-64 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+                  className="pl-9 pr-4 py-2 w-48 lg:w-64 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
                 />
               </div>
               {/* Notifications */}
-              <button className="relative p-2 bg-gray-50 rounded-lg text-gray-500 hover:text-[#0a192f] hover:bg-gray-100 transition-colors">
+              <button className="relative p-2 bg-gray-50 rounded-lg text-gray-500 hover:text-[#242b26] hover:bg-gray-100 transition-colors">
                 <Bell size={18} />
                 <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
               </button>
               {/* Avatar */}
-              <div className="w-9 h-9 rounded-full bg-[#0a192f] flex items-center justify-center text-white text-xs font-bold">
+              <div className="w-9 h-9 rounded-full bg-[#242b26] flex items-center justify-center text-white text-xs font-bold">
                 {initials}
               </div>
             </div>

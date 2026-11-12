@@ -13,7 +13,7 @@ import { MAPBOX_TOKEN, initMapbox, interpolateAlongRoute, formatDistance, format
 const statusConfig: Record<string, { color: string; bg: string; icon: React.ReactNode; label: string }> = {
   'pending':          { color: 'text-gray-600',   bg: 'bg-gray-100',   icon: <Clock size={16} />,       label: 'Order Confirmed' },
   'picked-up':        { color: 'text-purple-600', bg: 'bg-purple-100', icon: <Package size={16} />,     label: 'Picked Up' },
-  'in-transit':       { color: 'text-blue-600',   bg: 'bg-blue-100',   icon: <Truck size={16} />,       label: 'In Transit' },
+  'in-transit':       { color: 'text-lime-800',    bg: 'bg-lime-100',    icon: <Truck size={16} />,       label: 'In Transit' },
   'out-for-delivery': { color: 'text-cyan-600',   bg: 'bg-cyan-100',   icon: <Navigation size={16} />,  label: 'Out for Delivery' },
   'delivered':        { color: 'text-green-600',  bg: 'bg-green-100',  icon: <CheckCircle size={16} />, label: 'Delivered' },
   'returned':         { color: 'text-red-600',    bg: 'bg-red-100',    icon: <RotateCcw size={16} />,   label: 'Returned' },
@@ -191,8 +191,8 @@ const TrackingDashboard: React.FC = () => {
         const curEl = document.createElement('div');
         curEl.innerHTML = `
           <div style="position:relative;">
-            <div style="width:28px;height:28px;border-radius:50%;background:#3b82f6;opacity:0.2;position:absolute;top:-6px;left:-6px;animation:ping 2s ease-in-out infinite;"></div>
-            <div style="width:16px;height:16px;border-radius:50%;background:#3b82f6;border:3px solid white;box-shadow:0 2px 12px rgba(59,130,246,0.4);position:relative;z-index:1;"></div>
+            <div style="width:28px;height:28px;border-radius:50%;background:#16834a;opacity:0.2;position:absolute;top:-6px;left:-6px;animation:ping 2s ease-in-out infinite;"></div>
+            <div style="width:16px;height:16px;border-radius:50%;background:#16834a;border:3px solid white;box-shadow:0 2px 12px rgba(59,130,246,0.4);position:relative;z-index:1;"></div>
           </div>
         `;
         const marker = new mapboxgl.Marker({ element: curEl })
@@ -248,13 +248,11 @@ const TrackingDashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-[#0a192f] text-white">
+      <header className="bg-[#242b26] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center">
-              <Package size={18} />
-            </div>
-            <span className="text-lg font-bold tracking-tight">NexusRoute Global Logistics</span>
+            <img src="/summit-logo.svg" alt="" className="w-9 h-9 rounded-lg" />
+            <span className="text-lg font-bold tracking-tight">Summit Global</span>
           </Link>
           <form onSubmit={handleSearch} className="flex items-center gap-2">
             <div className="relative">
@@ -263,7 +261,7 @@ const TrackingDashboard: React.FC = () => {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Enter tracking ID..."
-                className="w-48 sm:w-64 h-10 pl-4 pr-10 bg-white/10 border border-white/20 rounded-lg text-sm text-white placeholder-white/40 focus:outline-none focus:border-blue-400 focus:bg-white/15 font-mono"
+                className="w-48 sm:w-64 h-10 pl-4 pr-10 bg-white/10 border border-white/20 rounded-lg text-sm text-white placeholder-white/40 focus:outline-none focus:border-green-400 focus:bg-white/15 font-mono"
               />
               <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 text-white/50 hover:text-white">
                 <Search size={16} />
@@ -275,20 +273,20 @@ const TrackingDashboard: React.FC = () => {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
         {/* Back link */}
-        <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#0a192f] mb-6 transition-colors">
+        <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#242b26] mb-6 transition-colors">
           <ArrowLeft size={16} /> Back to Home
         </Link>
 
         {loading && (
           <div className="flex items-center justify-center py-20">
-            <Loader2 size={32} className="animate-spin text-blue-600" />
+            <Loader2 size={32} className="animate-spin text-green-600" />
           </div>
         )}
 
         {error && !loading && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-xl border border-gray-200 shadow-sm p-12 text-center">
             <AlertCircle size={48} className="mx-auto text-gray-300 mb-4" />
-            <h2 className="text-xl font-bold text-[#0a192f] mb-2">Shipment Not Found</h2>
+            <h2 className="text-xl font-bold text-[#242b26] mb-2">Shipment Not Found</h2>
             <p className="text-gray-500 mb-6">{error}</p>
             <form onSubmit={handleSearch} className="max-w-md mx-auto flex gap-2">
               <input
@@ -296,9 +294,9 @@ const TrackingDashboard: React.FC = () => {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Try another tracking ID..."
-                className="flex-1 h-12 pl-4 border border-gray-200 rounded-lg text-sm font-mono focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+                className="flex-1 h-12 pl-4 border border-gray-200 rounded-lg text-sm font-mono focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none"
               />
-              <button type="submit" className="px-6 h-12 bg-[#0a192f] text-white rounded-lg text-sm font-medium hover:bg-[#112d57] transition-colors">Track</button>
+              <button type="submit" className="px-6 h-12 bg-[#242b26] text-white rounded-lg text-sm font-medium hover:bg-[#39433d] transition-colors">Track</button>
             </form>
           </motion.div>
         )}
@@ -307,10 +305,10 @@ const TrackingDashboard: React.FC = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="space-y-6">
             {/* Hero Card */}
             <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-              <div className="bg-gradient-to-r from-[#0a192f] to-[#112d57] text-white px-6 sm:px-8 py-6">
+              <div className="bg-gradient-to-r from-[#242b26] to-[#39433d] text-white px-6 sm:px-8 py-6">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <p className="text-blue-300 text-xs font-medium uppercase tracking-wider mb-1">Tracking Number</p>
+                    <p className="text-green-300 text-xs font-medium uppercase tracking-wider mb-1">Tracking Number</p>
                     <h1 className="text-2xl sm:text-3xl font-bold font-mono">{shipment.tracking_id}</h1>
                   </div>
                   <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold ${
@@ -337,17 +335,17 @@ const TrackingDashboard: React.FC = () => {
                             initial={{ scale: 0.8 }}
                             animate={{ scale: isCurrent ? 1.1 : 1 }}
                             className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-colors ${
-                              isDone ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-400'
-                            } ${isCurrent ? 'ring-4 ring-blue-200' : ''}`}
+                              isDone ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-400'
+                            } ${isCurrent ? 'ring-4 ring-green-200' : ''}`}
                           >
                             {cfg?.icon || <Clock size={16} />}
                           </motion.div>
-                          <p className={`text-[10px] sm:text-xs mt-2 font-medium text-center max-w-[70px] ${isDone ? 'text-[#0a192f]' : 'text-gray-400'}`}>
+                          <p className={`text-[10px] sm:text-xs mt-2 font-medium text-center max-w-[70px] ${isDone ? 'text-[#242b26]' : 'text-gray-400'}`}>
                             {cfg?.label}
                           </p>
                         </div>
                         {i < statusOrder.length - 1 && (
-                          <div className={`flex-1 h-1 mx-1 sm:mx-2 rounded-full ${i < currentStatusIdx ? 'bg-blue-600' : 'bg-gray-200'}`} />
+                          <div className={`flex-1 h-1 mx-1 sm:mx-2 rounded-full ${i < currentStatusIdx ? 'bg-green-600' : 'bg-gray-200'}`} />
                         )}
                       </React.Fragment>
                     );
@@ -359,13 +357,13 @@ const TrackingDashboard: React.FC = () => {
                   <div className="flex justify-between text-xs text-gray-500 mb-1">
                     <span>Progress</span>
                     <div className="flex items-center gap-3">
-                      {liveEta && <span className="text-blue-600 font-medium">{liveEta}</span>}
-                      <span className="font-semibold text-[#0a192f]">{Math.round(liveProgress)}%</span>
+                      {liveEta && <span className="text-green-600 font-medium">{liveEta}</span>}
+                      <span className="font-semibold text-[#242b26]">{Math.round(liveProgress)}%</span>
                     </div>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2.5">
                     <motion.div
-                      className={`h-2.5 rounded-full ${shipment.is_paused ? 'bg-amber-500' : 'bg-blue-600'}`}
+                      className={`h-2.5 rounded-full ${shipment.is_paused ? 'bg-amber-500' : 'bg-green-600'}`}
                       initial={{ width: 0 }}
                       animate={{ width: `${Math.round(liveProgress)}%` }}
                       transition={{ duration: 1.2, ease: 'easeOut' }}
@@ -380,7 +378,7 @@ const TrackingDashboard: React.FC = () => {
               {/* Map */}
               <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                 <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-                  <h3 className="font-bold text-[#0a192f] text-sm">Route Map</h3>
+                  <h3 className="font-bold text-[#242b26] text-sm">Route Map</h3>
                   {shipment.route_distance && (
                     <div className="flex gap-3 text-xs text-gray-500">
                       <span className="flex items-center gap-1"><MapPin size={12} /> {formatDistance(shipment.route_distance)}</span>
@@ -405,18 +403,18 @@ const TrackingDashboard: React.FC = () => {
                 {/* Shipment Details */}
                 <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                   <div className="px-5 py-3 border-b border-gray-100">
-                    <h3 className="font-bold text-[#0a192f] text-sm">Shipment Details</h3>
+                    <h3 className="font-bold text-[#242b26] text-sm">Shipment Details</h3>
                   </div>
                   <div className="p-5 space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <p className="text-[10px] text-gray-400 uppercase font-medium mb-0.5">From</p>
-                        <p className="text-sm font-medium text-[#0a192f]">{shipment.origin}</p>
+                        <p className="text-sm font-medium text-[#242b26]">{shipment.origin}</p>
                         <p className="text-xs text-gray-500">{shipment.sender_name}</p>
                       </div>
                       <div>
                         <p className="text-[10px] text-gray-400 uppercase font-medium mb-0.5">To</p>
-                        <p className="text-sm font-medium text-[#0a192f]">{shipment.destination}</p>
+                        <p className="text-sm font-medium text-[#242b26]">{shipment.destination}</p>
                         <p className="text-xs text-gray-500">{shipment.receiver_name}</p>
                       </div>
                     </div>
@@ -426,7 +424,7 @@ const TrackingDashboard: React.FC = () => {
                         <Box size={14} className="text-gray-400 mt-0.5 flex-shrink-0" />
                         <div>
                           <p className="text-[10px] text-gray-400 uppercase">Cargo Type</p>
-                          <p className="font-medium text-[#0a192f]">{shipment.cargo_type}</p>
+                          <p className="font-medium text-[#242b26]">{shipment.cargo_type}</p>
                         </div>
                       </div>
                       {shipment.weight && (
@@ -434,7 +432,7 @@ const TrackingDashboard: React.FC = () => {
                           <Weight size={14} className="text-gray-400 mt-0.5 flex-shrink-0" />
                           <div>
                             <p className="text-[10px] text-gray-400 uppercase">Weight</p>
-                            <p className="font-medium text-[#0a192f]">{shipment.weight}</p>
+                            <p className="font-medium text-[#242b26]">{shipment.weight}</p>
                           </div>
                         </div>
                       )}
@@ -442,7 +440,7 @@ const TrackingDashboard: React.FC = () => {
                         <Calendar size={14} className="text-gray-400 mt-0.5 flex-shrink-0" />
                         <div>
                           <p className="text-[10px] text-gray-400 uppercase">Created</p>
-                          <p className="font-medium text-[#0a192f]">{shipment.created_at?.split('T')[0]}</p>
+                          <p className="font-medium text-[#242b26]">{shipment.created_at?.split('T')[0]}</p>
                         </div>
                       </div>
                       {shipment.estimated_delivery && (
@@ -450,8 +448,8 @@ const TrackingDashboard: React.FC = () => {
                           <Clock size={14} className="text-gray-400 mt-0.5 flex-shrink-0" />
                           <div>
                             <p className="text-[10px] text-gray-400 uppercase">Est. Delivery</p>
-                            <p className="font-medium text-[#0a192f] text-xs leading-snug">{formatEstDelivery(shipment.estimated_delivery)}</p>
-                            {liveEta && <p className="text-[10px] text-blue-600 font-medium mt-0.5">{liveEta}</p>}
+                            <p className="font-medium text-[#242b26] text-xs leading-snug">{formatEstDelivery(shipment.estimated_delivery)}</p>
+                            {liveEta && <p className="text-[10px] text-green-600 font-medium mt-0.5">{liveEta}</p>}
                             {shipment.is_paused && (
                               <p className="text-[10px] text-amber-600 font-medium mt-0.5">⏸ Delivery paused — ETA will update on resume</p>
                             )}
@@ -466,7 +464,7 @@ const TrackingDashboard: React.FC = () => {
                 {shipment.transport_modes && Array.isArray(shipment.transport_modes) && shipment.transport_modes.length > 0 && (
                   <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                     <div className="px-5 py-3 border-b border-gray-100">
-                      <h3 className="font-bold text-[#0a192f] text-sm">Transport Chain</h3>
+                      <h3 className="font-bold text-[#242b26] text-sm">Transport Chain</h3>
                     </div>
                     <div className="p-5">
                       <div className="space-y-3">
@@ -479,12 +477,12 @@ const TrackingDashboard: React.FC = () => {
                             className="flex items-center gap-3"
                           >
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold ${
-                              i === 0 ? 'bg-blue-600' : i === shipment.transport_modes.length - 1 ? 'bg-green-600' : 'bg-gray-500'
+                              i === 0 ? 'bg-green-600' : i === shipment.transport_modes.length - 1 ? 'bg-green-600' : 'bg-gray-500'
                             }`}>
                               {i + 1}
                             </div>
                             <div className="flex-1">
-                              <p className="text-sm font-medium text-[#0a192f]">{mode}</p>
+                              <p className="text-sm font-medium text-[#242b26]">{mode}</p>
                             </div>
                             {i < shipment.transport_modes.length - 1 && (
                               <div className="w-px h-4 bg-gray-200 ml-4 absolute" />
@@ -500,15 +498,15 @@ const TrackingDashboard: React.FC = () => {
                 {courier && (
                   <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                     <div className="px-5 py-3 border-b border-gray-100">
-                      <h3 className="font-bold text-[#0a192f] text-sm">Assigned Courier</h3>
+                      <h3 className="font-bold text-[#242b26] text-sm">Assigned Courier</h3>
                     </div>
                     <div className="p-5">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center text-white font-bold text-lg">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-600 to-green-700 flex items-center justify-center text-white font-bold text-lg">
                           {courier.name.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)}
                         </div>
                         <div className="flex-1">
-                          <p className="font-semibold text-[#0a192f]">{courier.name}</p>
+                          <p className="font-semibold text-[#242b26]">{courier.name}</p>
                           <div className="flex items-center gap-2 text-xs text-gray-500 mt-0.5">
                             <span className="flex items-center gap-1"><Truck size={12} /> {courier.vehicle_type}</span>
                             <span className="flex items-center gap-1"><Star size={12} className="text-amber-500" /> {courier.rating}</span>
@@ -534,7 +532,7 @@ const TrackingDashboard: React.FC = () => {
                 onClick={() => setShowHistory(!showHistory)}
                 className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
               >
-                <h3 className="font-bold text-[#0a192f] text-sm">Tracking History ({history.length} updates)</h3>
+                <h3 className="font-bold text-[#242b26] text-sm">Tracking History ({history.length} updates)</h3>
                 {showHistory ? <ChevronUp size={18} className="text-gray-400" /> : <ChevronDown size={18} className="text-gray-400" />}
               </button>
               <AnimatePresence>
@@ -564,7 +562,7 @@ const TrackingDashboard: React.FC = () => {
                               {i < history.length - 1 && <div className="w-0.5 flex-1 bg-gray-200 min-h-[20px]" />}
                             </div>
                             <div className="pb-6 flex-1">
-                              <p className="text-sm font-semibold text-[#0a192f] capitalize">{entry.status.replace('-', ' ')}</p>
+                              <p className="text-sm font-semibold text-[#242b26] capitalize">{entry.status.replace('-', ' ')}</p>
                               {entry.location && <p className="text-xs text-gray-500 mt-0.5">{entry.location}</p>}
                               {entry.notes && <p className="text-xs text-gray-400 mt-0.5">{entry.notes}</p>}
                               <p className="text-[10px] text-gray-400 mt-1 font-mono">
@@ -582,12 +580,12 @@ const TrackingDashboard: React.FC = () => {
 
             {/* Route Summary */}
             {shipment.route_summary && (
-              <div className="bg-blue-50 border border-blue-200 rounded-xl px-6 py-4 flex items-center gap-3">
-                <Navigation size={18} className="text-blue-600 flex-shrink-0" />
+              <div className="bg-green-50 border border-green-200 rounded-xl px-6 py-4 flex items-center gap-3">
+                <Navigation size={18} className="text-green-600 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-medium text-blue-900">Route: {shipment.route_summary}</p>
+                  <p className="text-sm font-medium text-green-900">Route: {shipment.route_summary}</p>
                   {shipment.route_distance && (
-                    <p className="text-xs text-blue-600 mt-0.5">
+                    <p className="text-xs text-green-600 mt-0.5">
                       {formatDistance(shipment.route_distance)} • Est. {formatDuration(shipment.route_duration || 0)}
                     </p>
                   )}
@@ -599,11 +597,11 @@ const TrackingDashboard: React.FC = () => {
             <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
               <div className="px-6 sm:px-8 py-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <BellRing size={20} className="text-blue-600" />
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                    <BellRing size={20} className="text-green-600" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#0a192f] text-sm">Get Email Updates</h3>
+                    <h3 className="font-bold text-[#242b26] text-sm">Get Email Updates</h3>
                     <p className="text-xs text-gray-500">Receive notifications when this shipment's status changes</p>
                   </div>
                 </div>
@@ -639,7 +637,7 @@ const TrackingDashboard: React.FC = () => {
                       value={subName}
                       onChange={(e) => setSubName(e.target.value)}
                       placeholder="Your name (optional)"
-                      className="w-full h-10 px-4 border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+                      className="w-full h-10 px-4 border border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none"
                     />
                     <div className="flex gap-2">
                       <input
@@ -648,12 +646,12 @@ const TrackingDashboard: React.FC = () => {
                         onChange={(e) => setSubEmail(e.target.value)}
                         placeholder="your@email.com"
                         required
-                        className="flex-1 h-10 px-4 border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+                        className="flex-1 h-10 px-4 border border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none"
                       />
                       <button
                         type="submit"
                         disabled={subLoading || !subEmail.includes('@')}
-                        className="px-5 h-10 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-500 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
+                        className="px-5 h-10 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-500 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
                       >
                         {subLoading ? <Loader2 size={14} className="animate-spin" /> : <Mail size={14} />}
                         Subscribe
@@ -669,8 +667,8 @@ const TrackingDashboard: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#0a192f] text-gray-400 text-center py-6 mt-12">
-        <p className="text-xs">&copy; 2026 NexusRoute Global Logistics. All rights reserved.</p>
+      <footer className="bg-[#242b26] text-gray-400 text-center py-6 mt-12">
+        <p className="text-xs">&copy; 2026 Summit Global. All rights reserved.</p>
       </footer>
 
       <style>{`

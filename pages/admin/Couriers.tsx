@@ -24,7 +24,7 @@ const vehicleIcons: Record<string, React.ReactNode> = {
 const statusColors: Record<string, string> = {
   active: 'bg-green-100 text-green-700',
   inactive: 'bg-gray-100 text-gray-600',
-  'on-delivery': 'bg-blue-100 text-blue-700',
+  'on-delivery': 'bg-lime-100 text-lime-800',
   'on-break': 'bg-amber-100 text-amber-700',
 };
 
@@ -119,12 +119,12 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#0a192f]">Courier Management</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-[#242b26]">Courier Management</h2>
           <p className="text-sm text-gray-500">{couriers.length} registered couriers</p>
         </div>
         <button
           onClick={() => { setShowForm(true); handleGenerateId(); }}
-          className="px-5 py-2.5 bg-[#0a192f] text-white text-sm font-medium rounded-lg hover:bg-[#112d57] transition-colors flex items-center gap-2 self-start sm:self-auto"
+          className="px-5 py-2.5 bg-[#242b26] text-white text-sm font-medium rounded-lg hover:bg-[#39433d] transition-colors flex items-center gap-2 self-start sm:self-auto"
         >
           <UserPlus size={16} /> Register Courier
         </button>
@@ -135,17 +135,17 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setShowForm(false)}>
           <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <h3 className="text-lg font-bold text-[#0a192f]">Register New Courier</h3>
+              <h3 className="text-lg font-bold text-[#242b26]">Register New Courier</h3>
               <button onClick={() => setShowForm(false)} className="p-1 hover:bg-gray-100 rounded-lg transition-colors">
                 <X size={20} className="text-gray-500" />
               </button>
             </div>
             <div className="p-6 space-y-5">
               {/* Generated ID */}
-              <div className="bg-[#0a192f] text-white p-4 rounded-lg">
+              <div className="bg-[#242b26] text-white p-4 rounded-lg">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs text-gray-300 uppercase tracking-wider font-medium">Courier ID (Auto-Generated)</span>
-                  <button onClick={handleGenerateId} className="text-xs text-blue-300 hover:text-white flex items-center gap-1 transition-colors">
+                  <button onClick={handleGenerateId} className="text-xs text-green-300 hover:text-white flex items-center gap-1 transition-colors">
                     <RefreshCw size={12} /> Regenerate
                   </button>
                 </div>
@@ -171,7 +171,7 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
                     type="text" value={formData.name}
                     onChange={(e) => setFormData(p => ({ ...p, name: e.target.value }))}
                     placeholder="John Smith"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
                   />
                 </div>
                 <div>
@@ -180,7 +180,7 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
                     type="email" value={formData.email}
                     onChange={(e) => setFormData(p => ({ ...p, email: e.target.value }))}
                     placeholder="john@auratrack.com"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
                   />
                 </div>
                 <div>
@@ -189,7 +189,7 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
                     type="tel" value={formData.phone}
                     onChange={(e) => setFormData(p => ({ ...p, phone: e.target.value }))}
                     placeholder="+1 555-0100"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
                   />
                 </div>
                 <div>
@@ -197,7 +197,7 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
                   <select
                     value={formData.vehicleType}
                     onChange={(e) => setFormData(p => ({ ...p, vehicleType: e.target.value as Courier['vehicleType'] }))}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none bg-white"
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none bg-white"
                   >
                     <option value="motorcycle">Motorcycle</option>
                     <option value="bicycle">Bicycle</option>
@@ -212,7 +212,7 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
                     type="text" value={formData.licensePlate}
                     onChange={(e) => setFormData(p => ({ ...p, licensePlate: e.target.value }))}
                     placeholder="TX-1234-AB"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
                   />
                 </div>
                 <div>
@@ -221,7 +221,7 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
                     type="text" value={formData.zone}
                     onChange={(e) => setFormData(p => ({ ...p, zone: e.target.value }))}
                     placeholder="Downtown Houston"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
                   />
                 </div>
               </div>
@@ -233,7 +233,7 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
                 <button
                   onClick={handleRegister}
                   disabled={!formData.name || !formData.email || !formData.phone || !generatedId}
-                  className="flex-1 px-4 py-2.5 bg-[#0a192f] text-white text-sm font-medium rounded-lg hover:bg-[#112d57] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="flex-1 px-4 py-2.5 bg-[#242b26] text-white text-sm font-medium rounded-lg hover:bg-[#39433d] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   Register & Generate Barcode
                 </button>
@@ -251,7 +251,7 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
                 <CheckCircle size={32} className="text-green-600" />
               </div>
-              <h3 className="text-lg font-bold text-[#0a192f]">Courier Registered Successfully!</h3>
+              <h3 className="text-lg font-bold text-[#242b26]">Courier Registered Successfully!</h3>
               <p className="text-sm text-gray-500">{selectedCourier.name} has been registered.</p>
               
               <div className="bg-gray-50 rounded-lg p-5 space-y-3">
@@ -270,7 +270,7 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
                 </button>
                 <button
                   onClick={() => setShowBarcodeModal(false)}
-                  className="flex-1 px-4 py-2.5 bg-[#0a192f] text-white text-sm font-medium rounded-lg hover:bg-[#112d57] transition-colors"
+                  className="flex-1 px-4 py-2.5 bg-[#242b26] text-white text-sm font-medium rounded-lg hover:bg-[#39433d] transition-colors"
                 >
                   Done
                 </button>
@@ -288,14 +288,14 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
             type="text" value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by name, ID, or zone..."
-            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] focus:ring-1 focus:ring-[#0a192f] outline-none"
+            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none"
           />
         </div>
         <div className="relative">
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="appearance-none pl-4 pr-10 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#0a192f] outline-none bg-white"
+            className="appearance-none pl-4 pr-10 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] outline-none bg-white"
           >
             <option value="all">All Status</option>
             <option value="active">Active</option>
@@ -329,7 +329,7 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
                     <div className="flex items-center gap-3">
                       <img src={courier.avatar} alt={courier.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
                       <div className="min-w-0">
-                        <p className="text-sm font-medium text-[#0a192f] truncate">{courier.name}</p>
+                        <p className="text-sm font-medium text-[#242b26] truncate">{courier.name}</p>
                         <p className="text-xs text-gray-400 truncate">{courier.email}</p>
                       </div>
                     </div>
@@ -352,7 +352,7 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
                   </td>
                   <td className="px-4 py-4 hidden lg:table-cell">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium text-[#0a192f]">{courier.totalDeliveries}</span>
+                      <span className="text-sm font-medium text-[#242b26]">{courier.totalDeliveries}</span>
                       <span className="text-xs text-yellow-600">★ {courier.rating}</span>
                     </div>
                   </td>
@@ -360,14 +360,14 @@ const Couriers: React.FC<CouriersProps> = ({ couriers, setCouriers, onRefresh })
                     <div className="flex items-center justify-end gap-1">
                       <button
                         onClick={() => { setSelectedCourier(courier); setShowBarcodeModal(true); }}
-                        className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500 hover:text-[#0a192f]"
+                        className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500 hover:text-[#242b26]"
                         title="View Barcode"
                       >
                         <Eye size={16} />
                       </button>
                       <button
                         onClick={() => handleCopyId(courier.courierId)}
-                        className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500 hover:text-[#0a192f]"
+                        className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500 hover:text-[#242b26]"
                         title="Copy ID"
                       >
                         <Copy size={16} />

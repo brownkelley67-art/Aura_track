@@ -34,7 +34,7 @@ interface QuoteStats {
 }
 
 const statusConfig: Record<string, { label: string; color: string; bg: string; icon: React.ReactNode }> = {
-  new: { label: 'New', color: 'text-blue-700', bg: 'bg-blue-50 border-blue-200', icon: <AlertCircle className="w-3.5 h-3.5" /> },
+  new: { label: 'New', color: 'text-green-700', bg: 'bg-green-50 border-green-200', icon: <AlertCircle className="w-3.5 h-3.5" /> },
   reviewing: { label: 'Reviewing', color: 'text-yellow-700', bg: 'bg-yellow-50 border-yellow-200', icon: <Eye className="w-3.5 h-3.5" /> },
   quoted: { label: 'Quoted', color: 'text-purple-700', bg: 'bg-purple-50 border-purple-200', icon: <Send className="w-3.5 h-3.5" /> },
   accepted: { label: 'Accepted', color: 'text-green-700', bg: 'bg-green-50 border-green-200', icon: <CheckCircle className="w-3.5 h-3.5" /> },
@@ -154,7 +154,7 @@ const QuotesPage: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#0a192f]">Quote Requests</h1>
+          <h1 className="text-2xl font-bold text-[#242b26]">Quote Requests</h1>
           <p className="text-sm text-gray-500 mt-1">Manage and process incoming quote requests from service pages</p>
         </div>
         <button
@@ -170,7 +170,7 @@ const QuotesPage: React.FC = () => {
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
           {[
             { label: 'Total', value: stats.total, color: 'bg-gray-50 border-gray-200 text-gray-700' },
-            { label: 'New', value: stats.new_count, color: 'bg-blue-50 border-blue-200 text-blue-700' },
+            { label: 'New', value: stats.new_count, color: 'bg-green-50 border-green-200 text-green-700' },
             { label: 'Reviewing', value: stats.reviewing_count, color: 'bg-yellow-50 border-yellow-200 text-yellow-700' },
             { label: 'Quoted', value: stats.quoted_count, color: 'bg-purple-50 border-purple-200 text-purple-700' },
             { label: 'Accepted', value: stats.accepted_count, color: 'bg-green-50 border-green-200 text-green-700' },
@@ -195,18 +195,18 @@ const QuotesPage: React.FC = () => {
               placeholder="Search by name, email, or company..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+              className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
             />
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border rounded-lg transition-colors ${
-              showFilters || filterStatus || filterService ? 'bg-blue-50 border-blue-200 text-blue-700' : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
+              showFilters || filterStatus || filterService ? 'bg-green-50 border-green-200 text-green-700' : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
             }`}
           >
             <Filter className="w-4 h-4" /> Filters
             {(filterStatus || filterService) && (
-              <span className="w-5 h-5 bg-blue-600 text-white text-xs rounded-full flex items-center justify-center">
+              <span className="w-5 h-5 bg-green-600 text-white text-xs rounded-full flex items-center justify-center">
                 {(filterStatus ? 1 : 0) + (filterService ? 1 : 0)}
               </span>
             )}
@@ -228,7 +228,7 @@ const QuotesPage: React.FC = () => {
                   <select
                     value={filterStatus}
                     onChange={(e) => setFilterStatus(e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-green-500"
                   >
                     <option value="">All Statuses</option>
                     {Object.entries(statusConfig).map(([key, cfg]) => (
@@ -241,7 +241,7 @@ const QuotesPage: React.FC = () => {
                   <select
                     value={filterService}
                     onChange={(e) => setFilterService(e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-green-500"
                   >
                     <option value="">All Services</option>
                     {Object.keys(serviceIcons).map((svc) => (
@@ -269,7 +269,7 @@ const QuotesPage: React.FC = () => {
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
+            <Loader2 className="w-8 h-8 text-green-600 animate-spin" />
           </div>
         ) : quoteList.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
@@ -300,11 +300,11 @@ const QuotesPage: React.FC = () => {
                     >
                       <td className="px-4 py-3.5">
                         <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 bg-[#0a192f] rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                          <div className="w-9 h-9 bg-[#242b26] rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
                             {q.full_name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
                           </div>
                           <div className="min-w-0">
-                            <p className="font-semibold text-[#0a192f] truncate">{q.full_name}</p>
+                            <p className="font-semibold text-[#242b26] truncate">{q.full_name}</p>
                             <p className="text-xs text-gray-400 truncate">{q.email}</p>
                           </div>
                         </div>
@@ -327,7 +327,7 @@ const QuotesPage: React.FC = () => {
                       <td className="px-4 py-3.5 text-right">
                         <button
                           onClick={(e) => { e.stopPropagation(); openDetail(q); }}
-                          className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          className="p-1.5 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
                         >
                           <Eye className="w-4 h-4" />
                         </button>
@@ -362,7 +362,7 @@ const QuotesPage: React.FC = () => {
               {/* Drawer Header */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-gray-50 flex-shrink-0">
                 <div>
-                  <h2 className="text-lg font-bold text-[#0a192f]">Quote #{selectedQuote.id}</h2>
+                  <h2 className="text-lg font-bold text-[#242b26]">Quote #{selectedQuote.id}</h2>
                   <p className="text-xs text-gray-500">{formatDate(selectedQuote.created_at)}</p>
                 </div>
                 <button
@@ -395,47 +395,47 @@ const QuotesPage: React.FC = () => {
 
                 {/* Contact Info */}
                 <div className="bg-gray-50 rounded-lg p-4 space-y-3">
-                  <h3 className="text-sm font-semibold text-[#0a192f] flex items-center gap-2">
+                  <h3 className="text-sm font-semibold text-[#242b26] flex items-center gap-2">
                     <User className="w-4 h-4" /> Contact Information
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <User className="w-3.5 h-3.5 text-blue-600" />
+                      <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                        <User className="w-3.5 h-3.5 text-green-600" />
                       </div>
                       <div>
                         <p className="text-xs text-gray-400">Name</p>
-                        <p className="text-sm font-medium text-[#0a192f]">{selectedQuote.full_name}</p>
+                        <p className="text-sm font-medium text-[#242b26]">{selectedQuote.full_name}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <Mail className="w-3.5 h-3.5 text-blue-600" />
+                      <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                        <Mail className="w-3.5 h-3.5 text-green-600" />
                       </div>
                       <div>
                         <p className="text-xs text-gray-400">Email</p>
-                        <p className="text-sm font-medium text-[#0a192f] truncate">{selectedQuote.email}</p>
+                        <p className="text-sm font-medium text-[#242b26] truncate">{selectedQuote.email}</p>
                       </div>
                     </div>
                     {selectedQuote.company && (
                       <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                          <Building2 className="w-3.5 h-3.5 text-blue-600" />
+                        <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                          <Building2 className="w-3.5 h-3.5 text-green-600" />
                         </div>
                         <div>
                           <p className="text-xs text-gray-400">Company</p>
-                          <p className="text-sm font-medium text-[#0a192f]">{selectedQuote.company}</p>
+                          <p className="text-sm font-medium text-[#242b26]">{selectedQuote.company}</p>
                         </div>
                       </div>
                     )}
                     {selectedQuote.phone && (
                       <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                          <Phone className="w-3.5 h-3.5 text-blue-600" />
+                        <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                          <Phone className="w-3.5 h-3.5 text-green-600" />
                         </div>
                         <div>
                           <p className="text-xs text-gray-400">Phone</p>
-                          <p className="text-sm font-medium text-[#0a192f]">{selectedQuote.phone}</p>
+                          <p className="text-sm font-medium text-[#242b26]">{selectedQuote.phone}</p>
                         </div>
                       </div>
                     )}
@@ -445,10 +445,10 @@ const QuotesPage: React.FC = () => {
                 {/* Shipment Details */}
                 {selectedQuote.details && (
                   <div className="space-y-2">
-                    <h3 className="text-sm font-semibold text-[#0a192f] flex items-center gap-2">
+                    <h3 className="text-sm font-semibold text-[#242b26] flex items-center gap-2">
                       <MessageSquare className="w-4 h-4" /> Shipment Details
                     </h3>
-                    <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
+                    <div className="bg-green-50 border border-green-100 rounded-lg p-4">
                       <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">{selectedQuote.details}</p>
                     </div>
                   </div>
@@ -456,7 +456,7 @@ const QuotesPage: React.FC = () => {
 
                 {/* Update Status */}
                 <div className="space-y-2">
-                  <h3 className="text-sm font-semibold text-[#0a192f] flex items-center gap-2">
+                  <h3 className="text-sm font-semibold text-[#242b26] flex items-center gap-2">
                     <Tag className="w-4 h-4" /> Update Status
                   </h3>
                   <div className="grid grid-cols-3 gap-2">
@@ -479,7 +479,7 @@ const QuotesPage: React.FC = () => {
 
                 {/* Admin Notes */}
                 <div className="space-y-2">
-                  <h3 className="text-sm font-semibold text-[#0a192f] flex items-center gap-2">
+                  <h3 className="text-sm font-semibold text-[#242b26] flex items-center gap-2">
                     <StickyNote className="w-4 h-4" /> Admin Notes
                   </h3>
                   <textarea
@@ -487,12 +487,12 @@ const QuotesPage: React.FC = () => {
                     value={editNotes}
                     onChange={(e) => setEditNotes(e.target.value)}
                     placeholder="Add internal notes about this quote request..."
-                    className="w-full px-4 py-3 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"
+                    className="w-full px-4 py-3 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none resize-none"
                   />
                   <button
                     onClick={handleSaveNotes}
                     disabled={saving || editNotes === (selectedQuote.admin_notes || '')}
-                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[#0a192f] text-white rounded-lg hover:bg-[#112d57] transition-colors disabled:opacity-50"
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[#242b26] text-white rounded-lg hover:bg-[#39433d] transition-colors disabled:opacity-50"
                   >
                     {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}
                     Save Notes
@@ -520,7 +520,7 @@ const QuotesPage: React.FC = () => {
                 </button>
                 <a
                   href={`mailto:${selectedQuote.email}?subject=Re: ${selectedQuote.service_type} Quote Request&body=Dear ${selectedQuote.full_name},%0D%0A%0D%0AThank you for your interest in our ${selectedQuote.service_type} services.%0D%0A%0D%0A`}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-green-600 text-white rounded-lg hover:bg-green-500 transition-colors"
                 >
                   <Mail className="w-4 h-4" /> Reply via Email
                 </a>

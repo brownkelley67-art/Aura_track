@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, ChevronUp } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import logoImg from '../data/ogo.jpg';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -78,11 +77,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* Top Info Bar */}
-      <div className="hidden lg:block bg-[#0a192f] text-gray-300 text-xs py-2">
+      <div className="hidden lg:block bg-[#242b26] text-gray-300 text-xs py-2">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5"><Phone className="w-3 h-3" /> 202-846-4800</span>
-            <span className="flex items-center gap-1.5"><Mail className="w-3 h-3" /> nexusroutegloballogistics@gmail.com</span>
+            <span className="flex items-center gap-1.5"><Phone className="w-3 h-3" /> 332-225-7564</span>
+            <span className="flex items-center gap-1.5"><Mail className="w-3 h-3" /> summitglobalexpress@gmail.com</span>
             <span className="flex items-center gap-1.5"><MapPin className="w-3 h-3" /> Atlanta, GA</span>
           </div>
           <div className="flex items-center gap-4">
@@ -110,10 +109,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <a
             href="/"
             onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }}
-            className="text-xl lg:text-2xl font-bold text-[#0a192f] tracking-tight flex items-center gap-2 flex-shrink-0"
+            className="text-xl lg:text-2xl font-bold text-[#242b26] tracking-tight flex items-center gap-2 flex-shrink-0"
           >
-            <img src={logoImg} alt="Logo" className="w-8 h-8 object-cover rounded-sm" />
-            <span>NEXUSROUTE</span>
+            <img src="/summit-logo.svg" alt="Summit Global" className="w-8 h-8 object-cover rounded-sm" />
+            <span>SUMMIT GLOBAL</span>
           </a>
 
           {/* Desktop Links */}
@@ -123,10 +122,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); scrollToSection(link.href); }}
-                className="hover:text-[#0a192f] transition-colors relative group whitespace-nowrap"
+                className="hover:text-[#242b26] transition-colors relative group whitespace-nowrap"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -136,14 +135,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <a
               href="#contact"
               onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }}
-              className="hidden lg:flex px-5 py-2.5 bg-[#0a192f] text-white text-sm font-medium hover:bg-[#112d57] transition-all rounded-sm items-center gap-2 group"
+              className="hidden lg:flex px-5 py-2.5 bg-[#242b26] text-white text-sm font-medium hover:bg-[#39433d] transition-all rounded-sm items-center gap-2 group"
             >
               Get a Quote
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="xl:hidden p-2 text-[#0a192f] hover:bg-gray-100 rounded-sm transition-colors"
+              className="xl:hidden p-2 text-[#242b26] hover:bg-gray-100 rounded-sm transition-colors"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -169,7 +168,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: i * 0.05 }}
-                    className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-700 hover:text-[#0a192f] hover:bg-gray-50 rounded-sm transition-colors"
+                    className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-700 hover:text-[#242b26] hover:bg-gray-50 rounded-sm transition-colors"
                   >
                     {link.label}
                   </motion.button>
@@ -177,7 +176,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <div className="pt-3 border-t border-gray-100 mt-2">
                   <button
                     onClick={() => scrollToSection('#contact')}
-                    className="block w-full text-center px-5 py-3 bg-[#0a192f] text-white text-sm font-medium rounded-sm hover:bg-[#112d57] transition-colors"
+                    className="block w-full text-center px-5 py-3 bg-[#242b26] text-white text-sm font-medium rounded-sm hover:bg-[#39433d] transition-colors"
                   >
                     Get a Quote
                   </button>
@@ -201,7 +200,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="fixed bottom-24 right-6 z-50 w-12 h-12 bg-[#0a192f] text-white rounded-full shadow-xl flex items-center justify-center hover:bg-blue-700 transition-colors"
+            className="fixed bottom-24 right-6 z-50 w-12 h-12 bg-[#242b26] text-white rounded-full shadow-xl flex items-center justify-center hover:bg-green-700 transition-colors"
             aria-label="Scroll to top"
           >
             <ChevronUp className="w-5 h-5" />
@@ -215,7 +214,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="bg-[#0a192f] text-white"
+        className="bg-[#242b26] text-white"
       >
         {/* Main Footer */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
@@ -223,17 +222,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1">
               <div className="flex items-center gap-2 mb-4">
-                <img src={logoImg} alt="Logo" className="w-8 h-8 object-cover rounded-sm" />
-                <span className="text-xl font-bold">NEXUSROUTE</span>
+                <img src="/summit-logo.svg" alt="Summit Global" className="w-8 h-8 object-cover rounded-sm" />
+                <span className="text-xl font-bold">SUMMIT GLOBAL</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
                 Engineering global connectivity through precision logistics and unrivaled security since 2010.
               </p>
               <div className="flex items-center gap-3">
-                <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"><Facebook className="w-4 h-4" /></a>
-                <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"><Twitter className="w-4 h-4" /></a>
-                <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"><Linkedin className="w-4 h-4" /></a>
-                <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"><Instagram className="w-4 h-4" /></a>
+                <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors"><Facebook className="w-4 h-4" /></a>
+                <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors"><Twitter className="w-4 h-4" /></a>
+                <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors"><Linkedin className="w-4 h-4" /></a>
+                <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors"><Instagram className="w-4 h-4" /></a>
               </div>
             </div>
 
@@ -272,16 +271,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <h4 className="font-semibold mb-5 text-white text-sm uppercase tracking-wider">Contact Us</h4>
               <ul className="space-y-4 text-sm text-gray-400">
                 <li className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400" />
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-green-400" />
                   <span>Atlanta, GA</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 flex-shrink-0 text-blue-400" />
-                  <span>202-846-4800</span>
+                  <Phone className="w-4 h-4 flex-shrink-0 text-green-400" />
+                  <span>332-225-7564</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 flex-shrink-0 text-blue-400" />
-                  <span>nexusroutegloballogistics@gmail.com</span>
+                  <Mail className="w-4 h-4 flex-shrink-0 text-green-400" />
+                  <span>summitglobalexpress@gmail.com</span>
                 </li>
               </ul>
             </div>
@@ -291,7 +290,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-            <p>© {new Date().getFullYear()} NexusRoute Global Logistics. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Summit Global. All rights reserved.</p>
             <div className="flex gap-6">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
