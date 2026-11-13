@@ -18,6 +18,9 @@ const emailRoutes = require('./routes/emails');
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.set('trust proxy', 1);
+const frontendOrigin = (process.env.FRONTEND_URL || 'https://summitgolbalexpress.com')
+  .trim()
+  .replace(/\/+$/, '');
 
 // ─── SECURITY MIDDLEWARE ─────────────────────────────────────────────
 app.use(helmet());
@@ -35,8 +38,8 @@ app.use(cors({
     // Allow Vercel production and preview domains
     if (origin.includes('vercel.app')) return cb(null, true);
     
-    // Allow explicitly defined FRONTEND_URL if present
-    if (process.env.FRONTEND_URL && origin === process.env.FRONTEND_URL) return cb(null, true);
+    // FRONTEND_URL may be configured with a trailing slash; Origin headers never include one.
+    if (origin === frontendOrigin) return cb(null, true);
     
     cb(new Error('Blocked by CORS'));
   },

@@ -27,7 +27,7 @@ In Vercel's project settings, add the following variables to the **`server` serv
 - `SUPABASE_SERVICE_ROLE_KEY`: the new project's service-role secret key.
 - `JWT_SECRET` (or Vercel's `SUPABASE_JWT_SECRET`): a secret of at least 32 characters. The backend accepts Vercel's existing Supabase variable names as fallbacks. If setting a separate `JWT_SECRET`, generate it locally with `node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"` and enter it directly in Vercel; do not commit it.
 
-If production email notifications are needed, also configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, and `COMPANY_EMAIL`. Set `FRONTEND_URL` to `https://summitgolbalexpress.com` so links in emails point to the deployed site.
+Set `FRONTEND_URL` to the deployed site's exact production origin (for example, `https://summitgolbalexpress.com`; do not include a path). This is also the API's CORS allowlist entry, so a mismatch can cause `/api/auth/login` to return 403. The server ignores a trailing slash. If production email notifications are needed, also configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, and `COMPANY_EMAIL`.
 
 Do not add database or service-role credentials to the `app` service. The frontend talks to the Express API at `/api` and does not need direct database credentials.
 
