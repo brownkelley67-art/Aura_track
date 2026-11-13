@@ -226,7 +226,7 @@ const Settings: React.FC = () => {
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Website</label>
-                <input type="url" defaultValue="https://auratrack-psi.vercel.app" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
+                <input type="url" defaultValue="https://summitgolbalexpress.com" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
               </div>
             </div>
           </div>

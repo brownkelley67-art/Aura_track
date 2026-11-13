@@ -17,7 +17,7 @@ const COMPANY_NAME = 'Summit Global Express';
 const COMPANY_EMAIL = process.env.COMPANY_EMAIL || 'summitglobalexpress@gmail.com';
 const COMPANY_PHONE = '332-225-7564';
 const COMPANY_ADDRESS = 'Atlanta, GA';
-const FRONTEND_URL = process.env.FRONTEND_URL || 'https://auratrack-psi.vercel.app';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://summitgolbalexpress.com';
 
 /**
  * Send an email using the configured SMTP transport

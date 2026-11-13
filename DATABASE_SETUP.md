@@ -27,7 +27,7 @@ In Vercel's project settings, add the following variables to the **`server` serv
 - `SUPABASE_SERVICE_ROLE_KEY`: the new project's service-role secret key.
 - `JWT_SECRET` (or Vercel's `SUPABASE_JWT_SECRET`): a secret of at least 32 characters. The backend accepts Vercel's existing Supabase variable names as fallbacks. If setting a separate `JWT_SECRET`, generate it locally with `node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"` and enter it directly in Vercel; do not commit it.
 
-If production email notifications are needed, also configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, and `COMPANY_EMAIL`. Set `FRONTEND_URL` to `https://auratrack-psi.vercel.app` so links in emails point to the deployed site.
+If production email notifications are needed, also configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, and `COMPANY_EMAIL`. Set `FRONTEND_URL` to `https://summitgolbalexpress.com` so links in emails point to the deployed site.
 
 Do not add database or service-role credentials to the `app` service. The frontend talks to the Express API at `/api` and does not need direct database credentials.
 
