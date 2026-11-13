@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Save, User, Bell, Shield, Globe, Mail, Phone, MapPin, Camera } from 'lucide-react';
+import { Save, User, Bell, Shield, Globe, Mail, Phone, Camera } from 'lucide-react';
 
 const Settings: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'profile' | 'notifications' | 'security' | 'company'>('profile');
@@ -175,13 +175,12 @@ const Settings: React.FC = () => {
             <p className="text-sm text-gray-500 mb-4">Manage devices where you're currently signed in.</p>
             <div className="space-y-3">
               {[
-                { device: 'Chrome on Windows', location: 'Atlanta, GA', current: true },
-                { device: 'Safari on iPhone', location: 'Atlanta, GA', current: false },
+              { device: 'Chrome on Windows', current: true },
+              { device: 'Safari on iPhone', current: false },
               ].map((session, i) => (
                 <div key={i} className="flex items-center justify-between py-2 px-4 bg-gray-50 rounded-lg">
                   <div>
                     <p className="text-sm font-medium text-[#242b26]">{session.device}</p>
-                    <p className="text-xs text-gray-400">{session.location}</p>
                   </div>
                   {session.current ? (
                     <span className="text-xs text-green-600 font-medium bg-green-50 px-2 py-1 rounded-full">Current</span>
@@ -215,10 +214,6 @@ const Settings: React.FC = () => {
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Business Phone</label>
                 <input type="tel" defaultValue="332-225-7564" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
-              </div>
-              <div className="sm:col-span-2">
-                <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Address</label>
-                <input type="text" defaultValue="Atlanta, GA" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:border-[#242b26] focus:ring-1 focus:ring-[#242b26] outline-none" />
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wide">Tax ID / EIN</label>

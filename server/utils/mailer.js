@@ -16,7 +16,6 @@ const transporter = nodemailer.createTransport({
 const COMPANY_NAME = 'Summit Global Express';
 const COMPANY_EMAIL = process.env.COMPANY_EMAIL || 'summitglobalexpress@gmail.com';
 const COMPANY_PHONE = '332-225-7564';
-const COMPANY_ADDRESS = 'Atlanta, GA';
 const FRONTEND_URL = process.env.FRONTEND_URL || 'https://summitgolbalexpress.com';
 
 /**
@@ -79,7 +78,7 @@ function emailTemplate({ title, preheader, bodyHtml }) {
     </div>
     <div class="footer">
       <p>${COMPANY_NAME}</p>
-      <p>${COMPANY_ADDRESS} · ${COMPANY_PHONE}</p>
+      <p>${COMPANY_PHONE}</p>
       <p><a href="mailto:${COMPANY_EMAIL}">${COMPANY_EMAIL}</a></p>
       <p style="margin-top: 12px; color: #4a5568; font-size: 10px;">This is an automated message. Please do not reply directly to this email.</p>
     </div>

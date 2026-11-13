@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, ChevronUp } from 'lucide-react';
+import { Menu, X, ArrowRight, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, ChevronUp } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 interface LayoutProps {
@@ -82,7 +82,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5"><Phone className="w-3 h-3" /> 332-225-7564</span>
             <span className="flex items-center gap-1.5"><Mail className="w-3 h-3" /> summitglobalexpress@gmail.com</span>
-            <span className="flex items-center gap-1.5"><MapPin className="w-3 h-3" /> Atlanta, GA</span>
           </div>
           <div className="flex items-center gap-4">
             <a href="#" className="hover:text-white transition-colors"><Facebook className="w-3.5 h-3.5" /></a>
@@ -270,10 +269,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div>
               <h4 className="font-semibold mb-5 text-white text-sm uppercase tracking-wider">Contact Us</h4>
               <ul className="space-y-4 text-sm text-gray-400">
-                <li className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-green-400" />
-                  <span>Atlanta, GA</span>
-                </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-4 h-4 flex-shrink-0 text-green-400" />
                   <span>332-225-7564</span>
